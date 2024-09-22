@@ -81,11 +81,11 @@ libicu、libkrb5函数库。常用Linux一般默认已经安装了libkrb6或libi
 
 X86_64（amd64）系统：
 
-curl https://jexus.org/release/x64/install.sh\|sh
+curl https://jexus.org/release/x64/install.sh | sh
 
 AARCH64（arm64）系统：
 
-curl https://jexus.org/release/arm64/install.sh\|sh
+curl https://jexus.org/release/arm64/install.sh | sh
 
 *\* 强调：使用上述命令前应该确定自己当前身份是否是root身份。*
 
@@ -99,8 +99,7 @@ Jexus安装包是一个"tar.gz"压缩包，因此，"离线安装"过程，其�
 
 2、将安装包上传到服务器的安装目录。Jexus习惯上使用"/usr/jexus"作为工作目录，因此，建议你把安装包上传到"/usr"文件夹中。
 
-3、解压：在jexus安装包所在文件夹中，以root身份解压Jexus压缩包（安装包）。如x86_64是：sudo
-tar -zxvf jexus-7.0.x-x64.tar.gz
+3、解压：在jexus安装包所在文件夹中，以root身份解压Jexus压缩包（安装包）。如x86_64是：sudo tar -zxvf jexus-7.0.x-x64.tar.gz
 
 4、删除安装包。
 
@@ -116,12 +115,9 @@ tar -zxvf jexus-7.0.x-x64.tar.gz
 
 （五）检查版本和初始化：
 
-1、检查Jexus版本号的命令是"/usr/jexus/jws
--V"，如果Jexus安装正常，此命令将打印出Jexus的版本号以及集成的
-.NET（mono）运行时的版本号。
+1、检查Jexus版本号的命令是"/usr/jexus/jws -V"，如果Jexus安装正常，此命令将打印出Jexus的版本号以及集成的 mono.net 运行时的版本号。
 
-2、初始化命令是"sudo /usr/jexus/jws
-init"，这是安装Jexus后的非必要操作，但是建议执行一次。
+2、初始化命令是"sudo /usr/jexus/jws init"，这是安装Jexus后的非必要操作，但是建议执行一次。
 
 ## 三、Jexus 的操作命令
 
@@ -131,8 +127,7 @@ Jexus核心命令是"jws"，如果你把jexus安装在"习惯"位置，即"/usr/
 
 "jws"其实是一个shell脚本文件，具体内容可以自行查看。
 
-Jexus的操作是通过为
-"jws"提供不同的操作参数实现的，包括"启动（start）""停止（stop）""重启(restart)""运行状态(status)""初始化（init）""显示版本（-V）"。初始化和显示版本号已经在前文进行了说明，不再此处复述。
+Jexus的操作是通过为"jws"提供不同的操作参数实现的，包括"启动（start）""停止（stop）""重启(restart)""运行状态(status)""初始化（init）""显示版本（-V）"。初始化和显示版本号已经在前文进行了说明，不再此处复述。
 
 1、启动命令
 
@@ -180,8 +175,7 @@ sudo /usr/jexus/jws status
 
 具体方法是：在"/etc/rc.local"文件中加入"/usr/jexus/jws start"一行。
 
-此方法使用简便，但要注意：一是要把jws的路径和文件名写正确，要使用"jws"命令文件的绝对路径；二是rc.local文件要有"可执行"属性，建议运行一下这个命令："sudo
-chmod +x /etc/rc.local"。
+此方法使用简便，但要注意：一是要把jws的路径和文件名写正确，要使用"jws"命令文件的绝对路径；二是rc.local文件要有"可执行"属性，建议运行一下这个命令："sudo chmod +x /etc/rc.local"。
 
 **方法二**：将jexus注册到systemd中成为系统服务。
 
@@ -197,8 +191,7 @@ chmod +x /etc/rc.local"。
 
 5、注销服务：sudo systemctl disable jws
 
-***特别强调：**一旦jexus被注册为系统服务之后，jexus的启动、停止、重启等操作只能使用systemctl进行操作，不能再使用不带网站参数的"jws
-start""jws stop""jws restart"等命令进行操作。*
+***特别强调：**一旦jexus被注册为系统服务之后，jexus的启动、停止、重启等操作只能使用systemctl进行操作，不能再使用不带网站参数的"jws start""jws stop""jws restart"等命令进行操作。*
 
 ## 四、Jexus 的全局配置
 
@@ -211,8 +204,7 @@ SiteConfigDir：指定网站配置文件夹的路径，默认配置是jexus程�
 
 SiteLogDir：指定jexus日志和网站访问日志的存放路径。默认配置是jexus程序文件夹下的"log"子目录。该项配置不建议修改。
 
-Httpd.Processes：指的是jexus
-httpd工作进程的数量，默认为2，设为0表示自动，即由jexus根据服务器cpu数量自行确定。
+Httpd.Processes：指的是jexus httpd工作进程的数量，默认为2，设为0表示自动，即由jexus根据服务器cpu数量自行确定。
 
 该项配置能影响Jexus处理html等静态文件以及数据转发等方面的性能，其具体数量应该结合服务器cpu数量、内存富余度和并发请求数量综合考虑，一般来情况下配置2个进程就行，如果服务器并发流量大，可以按cpu核心数的三分之一或二分之一设置。
 
@@ -220,11 +212,9 @@ Httpd.MaxTotalMemory：指的是允许Jexus的httpd工作进程最多使用多�
 
 Httpd.MaxCpuTime：表示Jexus的httpd工作进程最多能使用多少cpu时间，单位为秒，达到这个时间值后，jexus的httpd工作进程就会自动重启。设为0表示禁用这个选项。
 
-Httpd.MaxConnPerIp：表示jexus
-httpd工作进程允许每个IP地址能同时发出多少个TCP连接，当某IP地址超过这个数量的连接时，Jexus将拒绝接受。设为0表示禁用这个选项。
+Httpd.MaxConnPerIp：表示jexus httpd工作进程允许每个IP地址能同时发出多少个TCP连接，当某IP地址超过这个数量的连接时，Jexus将拒绝接受。设为0表示禁用这个选项。
 
-Php-fcgi.Set：PHP运行环境设置，本设置的值分两部分，两个部分之间用英文逗号分开。第一部分是指定php-cgi命令文件的完整路径（一般是"/usr/bin/php-cgi"）；第二部分是设定php-cgi的最大工作进程数量。本项设置不是必须的，如果你服务器不通过Jexus直接运行PHP
-WEB程序，就可以禁用该项（在配置行前加"#"号）。
+Php-fcgi.Set：PHP运行环境设置，本设置的值分两部分，两个部分之间用英文逗号分开。第一部分是指定php-cgi命令文件的完整路径（一般是"/usr/bin/php-cgi"）；第二部分是设定php-cgi的最大工作进程数量。本项设置不是必须的，如果你服务器不通过Jexus直接运行PHP WEB程序，就可以禁用该项（在配置行前加"#"号）。
 
 ## 五、Jexus 的网站配置
 
@@ -242,8 +232,7 @@ Jexus Web Server 可以同时运行多个站点，没有数量限制。
 
 port：站点服务端口，这是必填项。http的标准端口是80，https的标准端口是443。
 
-root：根路径。指定网站虚拟根路径（URL根路径）和存放网站文件的物理文件夹（物理根）路径，两种路径用空格符分开。URL根路径常常是"/"。如果你的网站文件存放在"/var/www/default"这个文件夹中，那么，root项就应该是"root=/
-/var/www/default"。
+root：根路径。指定网站虚拟根路径（URL根路径）和存放网站文件的物理文件夹（物理根）路径，两种路径用空格符分开。URL根路径常常是"/"。如果你的网站文件存放在"/var/www/default"这个文件夹中，那么，root项就应该是"root=/ /var/www/default"。
 
 root项是必填项。如果遇上在当前服务器并没有网站程序的"全站反向代理"这种情况，你可以在服务器单独创建一个空白文件夹并设定它，也可以设为"/tmp"。
 
@@ -261,8 +250,7 @@ Jexus已经内置默认首页的定义，包括index.html、index.htm、default.
 
 **2、URL重写（rewrite）：**
 
-"URL重写"是指WEB服务器将访问者向服务器发起的URL请求按指定的匹配规则解释和匹配到另外的一个真实RUL路径资源上。比如，当访问者访问".php"
-".asp"等类型的文件时，服务器以 "/404.html" 这个URL应答，你可以设为：
+"URL重写"是指WEB服务器将访问者向服务器发起的URL请求按指定的匹配规则解释和匹配到另外的一个真实RUL路径资源上。比如，当访问者访问".php"、".asp"等类型的文件时，服务器以 "/404.html" 这个URL应答，你可以设为：
 
 rewrite=\^/.+?\\.(asp\|php\|cgi)\$ /404.html
 
@@ -276,8 +264,7 @@ rewrite格式：
 
 如：
 
-把"/bbs"匹配到"/bbs/index.aspx"，把"/bbs/file-编号" 匹配到
-"/bbs/show.aspx?id=编号"：
+把"/bbs"匹配到"/bbs/index.aspx"，把"/bbs/file-编号" 匹配到"/bbs/show.aspx?id=编号"：
 
 rewrite=\^/bbs\$ /bbs/index.aspx
 
@@ -313,8 +300,7 @@ denyfrom=101.201.1.132 \# 一个IP地址
 
 格式是：DenyDirs=PATH
 
-PATH指的是相对于网站根文件夹的URL路径，如 "/abcfiles"或
-"\~/abcfiles"。可以同时指定多个路径，用英文逗号分开。
+PATH指的是相对于网站根文件夹的URL路径，如 "/abcfiles"或"\~/abcfiles"。可以同时指定多个路径，用英文逗号分开。
 
 **5、是否对请求的URL参数等进行安全检测（CheckQuery）**：
 
@@ -467,22 +453,21 @@ Core应用程序的5000端口上。
 
 **17、自宿主WEB应用程序托管服务（AppHost）：**
 
-"自宿主web应用程序托管"是Jexus的一项独有的重要功能，它为Asp.Net
-Core、Node.js、Tomcat等自宿主Web程序提供了简单可靠、可控的一体化集成管理。
+"自宿主web应用程序托管"是Jexus的一项独有的重要功能，它为Asp.Net Core、Node.js、Tomcat等自宿主Web程序提供了简单可靠、可控的一体化集成管理。
 
 格式：AppHost={Cmd=命令行; AppRoot=工作路径; AppPort=端口号}
 
 也可以分行书写（分行书写时，AppHost和"={"必须在同一行），例如：
 
-AppHost={
+  AppHost={
 
-Cmd=命令行;
+    Cmd=命令行;
 
-AppRoot=应该程序文件夹路径;
+    AppRoot=应该程序文件夹路径;
 
-AppPort=应用程序端口号;
+    AppPort=应用程序端口号;
 
-}
+  }
 
 子配置项说明：
 
