@@ -195,8 +195,7 @@ sudo /usr/jexus/jws status
 
 ## 四、Jexus 的全局配置
 
-在 jexus
-的工作文件夹中（一般是"/usr/jexus"）有一个基本的配置文件，文件名是"jws.conf"，这是Jexus的全局配置文件。
+在jexus的工作文件夹中（一般是"/usr/jexus"）有一个基本的配置文件，文件名是"jws.conf"，这是Jexus的全局配置文件。
 
 主要配置项如下：
 
@@ -442,8 +441,7 @@ ssl.ciphers=ECDHE-RSA-AES256-GCM-SHA384:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!A
 
 格式是：AppHost.Port=端口号
 
-本项配置指的是将当前网站的请求数据全部转发到本机某WEB应用程序侦听端口，比如把请求转发到Asp.net
-Core应用程序的5000端口上。
+本项配置指的是将当前网站的请求数据全部转发到本机某WEB应用程序侦听端口，比如把请求转发到Asp.net Core应用程序的5000端口上。
 
 可以使用多个端口，各端口号之间用英文逗号分开。
 
@@ -468,15 +466,13 @@ AppHost={
 ```
 子配置项说明：
 
-Cmd：必选项。表示启动这个web应用程序的命令和命令参数，如 Cmd=dotnet
-/var/www/mysite/webapp.dll。
+Cmd：必选项。表示启动这个web应用程序的命令和命令参数，如 Cmd=dotnet /var/www/mysite/webapp.dll。
 
 AppRoot：非必选项。表示这个应用程序的工作目录，如：AppRoot=/var/www/mysite。如果本项没有指定，Jexus将使用网站root项中的根文件夹路径作为应用程序路径。
 
 AppPort：必填项。表示这个应用程序使用的侦听端口，多个端口用英文逗号分隔。
 
-Env：可选参数。表示这个应用程序工作时需要的环境变量，如
-Env=(PATH=/myhost/bin:\$PATH),多个设置用英文逗号分开。
+Env：可选参数。表示这个应用程序工作时需要的环境变量，如Env=(PATH=/myhost/bin:\$PATH),多个设置用英文逗号分开。
 
 ErrLog：可选项。表示将这个应用程序的异常输出重定向到指定的文件（需填写完整路径）；
 
@@ -488,8 +484,7 @@ User：可选项。以指定的用户身份运行该应用程序，默认为root
 
 1、AppHost像AppHost.Port一样，不支持虚拟路径；
 
-2、AppHost功能是将指定的具有http服务能力的web应用程序纳入jexus工作进程进行管理，对Asp.Net
-Core或Node.js等自宿主web程序用于生产环境具有重要的意义。
+2、AppHost功能是将指定的具有http服务能力的web应用程序纳入jexus工作进程进行管理，对Asp.Net Core或Node.js等自宿主web程序用于生产环境具有重要的意义。
 
 **18、OwinMain配置：**
 
@@ -548,8 +543,7 @@ Jexus从2008年正式公开发布以来，一直受到了国内外Web建设者�
 1、Jexus
 v5.x、6.x属免费软件，所有用户可以自由下载、传播和使用，但Jexus作者不对Jexus的用途、作用、效果、技术支持以及其它相关内容作任何明确或暗含的承诺，不承担任何直接或间接的责任。
 
-2、Jexus
-v7.0及更高版本，允许个人或者10人以下的小型团队免费使用，也允许开发者作为测试环境免费使用。其它情况下使用，原则上需要获得Jexus作者刘冰先生（宇内流云）的商业授权。
+2、Jexus v7.0及更高版本，允许个人或者10人以下的小型团队免费使用，也允许开发者作为测试环境免费使用。其它情况下使用，原则上需要获得Jexus作者刘冰先生（宇内流云）的商业授权。
 
 3、Jexus作者对所有Jexus版本提供有偿的技术支持或定制开发。
 
