@@ -80,13 +80,13 @@ libicu、libkrb5函数库。常用Linux一般默认已经安装了libkrb6或libi
 指的是服务器能够连接互联网，服务器通过互联网从Jexus官方网站获取最新正式版安装包进行自动安装。安装命令是：
 
 X86_64（amd64）系统：
-
+```
 curl https://jexus.org/release/x64/install.sh | sh
-
+```
 AARCH64（arm64）系统：
-
+```
 curl https://jexus.org/release/arm64/install.sh | sh
-
+```
 *\* 强调：使用上述命令前应该确定自己当前身份是否是root身份。*
 
 （三）离线安装：
@@ -459,16 +459,13 @@ Core应用程序的5000端口上。
 
 也可以分行书写（分行书写时，AppHost和"={"必须在同一行），例如：
 
-  AppHost={
-
-    Cmd=命令行;
-
-    AppRoot=应该程序文件夹路径;
-
-    AppPort=应用程序端口号;
-
-  }
-
+```code
+AppHost={
+  Cmd=命令行;
+  AppRoot=应该程序文件夹路径;
+  AppPort=应用程序端口号;
+}
+```
 子配置项说明：
 
 Cmd：必选项。表示启动这个web应用程序的命令和命令参数，如 Cmd=dotnet
