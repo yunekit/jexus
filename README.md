@@ -5,4 +5,4 @@ Jexus which has excellent features such as high performance, high security, and 
 
 The author of Jexus is Liu Bing (刘冰，网名：宇内流云), a native of Sichuan, China. Email: j66x@163.com.
 
-The official website address of JEXUS is https://www.jexus.org/
+The official website address of jexus is https://www.jexus.org/
