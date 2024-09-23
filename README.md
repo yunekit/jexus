@@ -5,9 +5,8 @@
   }
 </style>
 
-<div id="img_title_">
-  ![JexusLogo]("./images/jexus_logo_h32.png" "Jexus")
-</div>
+
+![jexus logo]("./images/jexus_logo_h32.png" "Jexus")
 
 # Jexus Web Server
 
