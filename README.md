@@ -1,13 +1,4 @@
-<style>
-  div img_title{
-    display: inline;
-    margin-right: 5px;
-  }
-</style>
-
-
-![jexus logo]("images/jexus_logo_h32.png" "Jexus")
-
+![jexus logo](images/jexus_logo_h32.png "Jexus")
 # Jexus Web Server
 
 Jexus is a Linux web server, It began to be publicly released globally in 2008.
