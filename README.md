@@ -16,3 +16,5 @@ Jexus 是一款完全由中国人独立研发（不基于任何第三方源码�
 Jexus 功能全面、性能强劲、服务周到，是 Nginx、Apache 等外国WEB服务器软件的国产化替代精品。
 
 Jexus的作者是刘冰（网名：宇内流云）, 电子邮箱：j66x@163.com，QQ号：273766940。
+
+Jexus的官网地址是：https://www.jexus.org/
