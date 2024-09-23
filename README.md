@@ -6,7 +6,7 @@
 </style>
 
 
-![jexus logo]("./images/jexus_logo_h32.png" "Jexus")
+![jexus logo]("images/jexus_logo_h32.png" "Jexus")
 
 # Jexus Web Server
 
