@@ -1,4 +1,4 @@
-<!--![jexus logo](https://raw.githubusercontent.com/yunekit/jexus/refs/heads/main/images/jexus_logo_h32.png)-->
+<!--  ![jexus logo](https://raw.githubusercontent.com/yunekit/jexus/refs/heads/main/images/jexus_logo_h32.png)  -->
 [JexusLogo](https://www.jexus.org/images/jexus_logo_h32.png)
 
 # Jexus Web Server
