@@ -14,7 +14,7 @@ The author of Jexus is LiuBing, Email: j66x@163.com.
 
 -----------------------------------------------------
 
-Jexus 是“Jexus Web Server”的简称，亦可缩写为“JWS”，汉语读音为“杰克瑟斯”或“杰克斯”，作者刘冰（网名：宇内流云），于2008年10月首次面向全球公开发布。
+Jexus 是“Jexus Web Server”的简称，亦可缩写为“JWS”，建议的汉语读音为“杰克瑟斯”或“杰克斯”，作者刘冰（网名：宇内流云），于2008年10月首次面向全球公开发布。
 
 Jexus 是一款运行于Linux环境的具有高安全性、高可靠性的高性能WEB服务器和负载均衡网关服务器。除了具备通用WEB服务器所必备的功能外，Jexus还直接支持各类Asp.Net Web应用程序，并以特有的“Web应用程序容器技术”无缝对接Asp.Net Core、Tomcat、GoLang Web、Python Web等各类自托管WEB应用程序，为它们提供一致性的集成管控。Jexus内置了久经实战考验的入侵防御系统，其安全等级远高于其它Web服务器软件。
 
