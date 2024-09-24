@@ -1,4 +1,4 @@
-![jexus logo](https://jexus.org/images/jexus_logo_h32.png)
+![jexus logo](https://raw.githubusercontent.com/yunekit/jexus/refs/heads/main/images/jexus_logo_h32.png)
 # Jexus Web Server
 
 Jexus is a Linux web server, It began to be publicly released globally in 2008.
