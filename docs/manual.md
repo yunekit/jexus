@@ -23,9 +23,9 @@
 
 ## 一、Jexus 概述
 
-Jexus是Linux平台上具有高安全性、高可靠性、高稳定性的高性能WEB服务器、反向代理网关服务器和自宿主WEB应用程序托管服务器。
+Jexus是Linux平台上具有高安全性、高可靠性、高稳定性的高性能WEB服务器、反向代理网关服务器和自宿主WEB应用程序的托管服务器。
 
-Jexus除了具备通用WEB服务器所必备的功能外，还直接支持Asp.Net WEB应用，支持PHP，支持反向代理。自6.0版开始，Jexus开创性地设计了"AppHost"功能，通过此功能，Jexus可以为Asp.Net Core、Tomcat、Go/Python Web等"HTTP自宿主WEB应用程序"提供一体化集成管理。
+Jexus除了具备通用WEB服务器所必备的功能外，还直接支持Asp.Net WEB应用，支持PHP，支持反向代理。自6.0版开始，Jexus开创性地设计了"AppHost"功能，通过此功能，Jexus可以为Asp.Net Core、Tomcat、GoLang Web、Python Web等"HTTP自宿主WEB应用程序"提供一体化集成管理。
 
 就中国而言，Jexus是一款完全由中国人自主研发的国产服务器软件，支持国产操作系统和国产CPU芯片，真正做到了"安全、可靠、可信、可控"，具备我国党政机关和重要企事业单位信息化建设所需要的关键品质。
 
@@ -231,7 +231,7 @@ Jexus Web Server 可以同时运行多个站点，没有数量限制。
 
 port：站点服务端口，这是必填项。http的标准端口是80，https的标准端口是443。
 
-root：根路径。指定网站虚拟根路径（URL根路径）和存放网站文件的物理文件夹（物理根）路径，两种路径用空格符分开。URL根路径常常是"/"。如果你的网站文件存放在"/var/www/default"这个文件夹中，那么，root项就应该是"root=/ /var/www/default"。
+root：根路径。指定网站虚拟根路径（URL根路径）和存放网站文件的物理文件夹路径（物理根），两种路径用空格符分开。URL根路径常常是"/"。如果你的网站文件存放在"/var/www/default"这个文件夹中，那么，root项就应该是"root=/ /var/www/default"。
 
 root项是必填项。如果遇上在当前服务器并没有网站程序的"全站反向代理"这种情况，你可以在服务器单独创建一个空白文件夹并设定它，也可以设为"/tmp"。
 
@@ -484,7 +484,9 @@ User：可选项。以指定的用户身份运行该应用程序，默认为root
 
 1、AppHost像AppHost.Port一样，不支持虚拟路径；
 
-2、AppHost功能是将指定的具有http服务能力的web应用程序纳入jexus工作进程进行管理，对Asp.Net Core或Node.js等自宿主web程序用于生产环境具有重要的意义。
+2、AppHost功能是将指定的具有http服务能力的web应用程序纳入jexus工作进程进行管理，对Asp.Net Core或node.js等自宿主web应用程序用于生产环境时具有重要的意义。
+
+3、不要同时启用AppHost和AppHost.Port。
 
 **18、OwinMain配置：**
 
@@ -498,9 +500,15 @@ User：可选项。以指定的用户身份运行该应用程序，默认为root
 
 Jexus从2008年正式公开发布以来，一直受到了国内外Web建设者们的关注，涉及到了各种规模和不同类型的项目，通过与开发者们的互动，我们得到比较丰富的使用经验和问题处理经验。本章节我们以问答的形式向大家共享一些具有普遍性的经验或常识。
 
-1、如何评估传统的Asp.Net是否能迁移到Linux平台？
+**1、如何评估传统的Asp.Net是否能迁移到Linux平台？**
 
-2、传统Asp.Net在Linux平台上性能如何？
+一个重要的观察点就是你的Asp.Net应用程序以及所引用的第三方库是否是“标准的”、“通用的”，即是否不依赖Windows系统所特有的功能、组件和系统函数。比如，不能使用Windwos特有的ActivX/COM技术，不能通过Dllmport方法调用windows特有的kernel.dll、user32.dll等函数库的函数。另外，要符合linux的文件与路径命名规则，比如文件名大小写敏感等。
+
+
+**2、传统Asp.Net在Linux平台上性能如何？**
+
+“传统Asp.Net”指的是“.net core”这种新型.NET框架出现之前的.NET Framework，从版本号来看，指的是.NET 1.0—.NET 4.8.1版。
+传统版本的ASP.NET程序在Linux上动行是依赖mono这个开源运行时和相应的跨平台类库（Jexus已集成mono环境，不需要单独安装），现在，mono在技术上已经很成熟，性能也很优秀，但由于它需要照顾“跨平台”这个特殊需求，部分特性需要折中，因些部分性能可能略弱于Windows版的.NET Framework。
 
 3、为什么说Jexus是Asp.Net Core的最理想的宿主服务器？
 
