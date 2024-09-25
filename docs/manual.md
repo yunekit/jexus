@@ -507,8 +507,8 @@ Jexus从2008年正式公开发布以来，一直受到了国内外Web建设者�
 
 **2、传统Asp.Net在Linux平台上性能如何？**
 
-“传统Asp.Net”指的是“.net core”这种新型.NET框架出现之前的.NET Framework，从版本号来看，指的是.NET 1.0—.NET 4.8.1版。
-传统版本的ASP.NET程序在Linux上动行是依赖mono这个开源运行时和相应的跨平台类库（Jexus已集成mono环境，不需要单独安装），现在，mono在技术上已经很成熟，性能也很优秀，但由于它需要照顾“跨平台”这个特殊需求，部分特性需要折中，因些部分性能可能略弱于Windows版的.NET Framework。
+“传统Asp.Net”指的是有别于“Asp.Net Core”的基于传统的“.NET Framework（.NET 1.0-4.8.x）”运行环境的 .NET WEB应用程序框架。
+传统的ASP.NET程序在Linux上运行是依赖“mono”这个开源的跨平台运行时及其相应的跨平台通用类库（Jexus已集成mono环境，不需要单独安装）。现在，mono在技术上已经很成熟，性能也很优秀，但由于它需要照顾“跨平台”这个特殊需求，部分特性需要折中处理，因些部分性能可能略弱于只能在Windows系统上运插的.NET Framework。
 
 3、为什么说Jexus是Asp.Net Core的最理想的宿主服务器？
 
