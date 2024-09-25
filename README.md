@@ -1,5 +1,5 @@
 <!--
-![jexus logo](https://raw.githubusercontent.com/yunekit/jexus/refs/heads/main/images/jexus_logo_h32.png)
+![jws_logo](https://raw.githubusercontent.com/yunekit/jexus/refs/heads/main/images/jexus_logo_h32.png)
 -->
 
 ![JexusLogo](https://www.jexus.org/images/jexus_logo_h32.png)
