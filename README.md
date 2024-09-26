@@ -1,6 +1,8 @@
-<!-- ![jws_logo](https://raw.githubusercontent.com/yunekit/jexus/refs/heads/main/images/jexus_logo_h32.png) -->
-<!-- ![JwsLogo](https://www.jexus.org/images/jexus_logo_h32.png) -->
-![JWS-LOGO](images/jexus_logo_h32.png?raw=true)
+<!--
+![jws_logo](https://raw.githubusercontent.com/yunekit/jexus/refs/heads/main/images/jexus_logo_h32.png)
+-->
+![test](images/jexus_logo_h32.png?raw=true)
+![JwsLogo](https://www.jexus.org/images/jexus_logo_h32.png)
 
 # Jexus Web Server
 
