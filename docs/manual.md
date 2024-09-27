@@ -191,7 +191,7 @@ sudo /usr/jexus/jws status
 
 5、注销服务：sudo systemctl disable jws
 
-***特别强调：**一旦jexus被注册为系统服务之后，jexus的启动、停止、重启等操作只能使用systemctl进行操作，不能再使用不带网站参数的"jws start""jws stop""jws restart"等命令进行操作。*
+*\*\*\* 特别强调：一旦jexus被注册为系统服务之后，jexus的启动、停止、重启等操作只能使用systemctl进行操作，不能再使用不带网站参数的"jws start""jws stop""jws restart"等命令进行操作。*
 
 ## 四、Jexus 的全局配置
 
@@ -280,7 +280,7 @@ A、只允许某些IP地址访问网站（白名单功能）
 配置格式，形如：
 
 allowfrom=1.2.3.\* \# 一个IP地址段
-
+<br>
 AllowFrom=2.2.3.3 \# 一个具体的IPv4地址
 
 B、禁止某IP或某IP段访问网站（黑名单功能）
@@ -289,9 +289,9 @@ B、禁止某IP或某IP段访问网站（黑名单功能）
 
 配置格式，形如：
 
-denyfrom=111.222.111.\* \# 一个IP地址段
-
-denyfrom=101.201.1.132 \# 一个IP地址
+denyfrom=111.222.111.\* &emsp;&emsp;\# 一个IP地址段
+<br/>
+denyfrom=101.201.1.132 &emsp;&emsp;\# 一个IP地址
 
 *注：为了不使配置复杂化，建议只使用"黑名单"。*
 
