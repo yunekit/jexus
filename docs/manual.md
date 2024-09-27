@@ -266,7 +266,7 @@ rewrite格式：
 把"/bbs"匹配到"/bbs/index.aspx"，把"/bbs/file-编号" 匹配到"/bbs/show.aspx?id=编号"：
 
 rewrite=\^/bbs\$ /bbs/index.aspx
-
+<br>
 rewrite=\^/bbs/file-(\[0-9\]{1,6})\$ /bbs/show.aspx?id=\$1
 
 格式解释：rewrite的等号后含有两部分内容，用空隔分开。前半部分是一个正则表达式，用于描述需要URL重写的（用户浏览器中的）url路径样式，后半部分是当用户的URL合乎前面的正则表达式时，JWS应该重写和访问的真实URL路径。
@@ -279,9 +279,9 @@ A、只允许某些IP地址访问网站（白名单功能）
 
 配置格式，形如：
 
-allowfrom=1.2.3.\* \# 一个IP地址段
+allowfrom=1.2.3.\* &emsp;&emsp;\# 一个IP地址段
 <br>
-AllowFrom=2.2.3.3 \# 一个具体的IPv4地址
+AllowFrom=2.2.3.3 &emsp;&emsp;\# 一个具体的IPv4地址
 
 B、禁止某IP或某IP段访问网站（黑名单功能）
 
@@ -343,11 +343,11 @@ Keep_Alive=true或false
 
 Reproxy=请求路径 目标服务器IP:端口，如：
 
-Reproxy=/ 1.1.1.1:800 （全站反代）
-
-Reproxy=/abc 1.1.1.1:900/abc （部分路径反代）
-
-Reproxy=/ 1.1.1.1:5000, 2.2.2.2:5000 （多目标服务器反代）
+Reproxy=/ 1.1.1.1:800 &emsp;（全站反代）
+<br/>
+Reproxy=/abc 1.1.1.1:900/abc &emsp;（部分路径反代）
+<br/>
+Reproxy=/ 1.1.1.1:5000, 2.2.2.2:5000 &emsp;（多目标服务器反代）
 
 值得强调的是，"多目标服务器反向代理"将产生负载均衡（WEB集群）和高可用性效果，即，当用户访问该站时，Jexus就会随机选择一台后端服务器进行处理，如果Jexus发现某台服务器已经宕机而没有应答，Jexus就会把请求转发给其它剩余的服务器。
 
