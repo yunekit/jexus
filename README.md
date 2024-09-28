@@ -1,6 +1,8 @@
 
 # Jexus Web Server
 
+![JwsLogo](https://www.jexus.org/images/jexus_logo_h32.png) 
+
 Jexus is a linux web server, It began to be publicly released globally in 2008.
 
 Jexus which has excellent features such as high performance, high security, and high stability, and directly supports asp.net, asp.net core, php and various self-hosted web applications, with flexible and efficient reverse proxy functions, which can be used to deploy web clusters. Jexus has a certain user group and influence at home and abroad, and is a very good web server software.
@@ -24,7 +26,7 @@ Jexus 作者的联系邮箱：j66x@163.com，QQ号：273766940.
 
 ----
 
-![JwsLogo](https://www.jexus.org/images/jexus_logo_h32.png) &emsp;[Jexus 用户手册](docs/manual.md) &emsp;[Jexus 官方网站](https://www.jexus.org) &emsp;[GitHub](https://github.com/yunekit/jexus) &emsp;[Gitee](https://gitee.com/yunekit/jexus)
+&emsp;[Jexus 官方网站](https://www.jexus.org) &emsp;[GitHub](https://github.com/yunekit/jexus) &emsp;[Gitee](https://gitee.com/yunekit/jexus)
 
 <!--
 ![jws_logo](https://raw.githubusercontent.com/yunekit/jexus/refs/heads/main/images/jexus_logo_h32.png)
