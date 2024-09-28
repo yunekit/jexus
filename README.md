@@ -1,9 +1,3 @@
-![JwsLogo](https://www.jexus.org/images/jexus_logo_h32.png)
-
-<!--
-![jws_logo](https://raw.githubusercontent.com/yunekit/jexus/refs/heads/main/images/jexus_logo_h32.png)
-![JWS_LOGO](images/jexus_logo_h32.png?raw=true)
--->
 
 # Jexus Web Server
 
@@ -30,4 +24,9 @@ Jexus 作者的联系邮箱：j66x@163.com，QQ号：273766940.
 
 ----
 
-[Jexus 用户手册](docs/manual.md) &emsp;[Jexus 官方网站](https://www.jexus.org) &emsp;[GitHub](https://github.com/yunekit/jexus) &emsp;[Gitee](https://gitee.com/yunekit/jexus)
+![JwsLogo](https://www.jexus.org/images/jexus_logo_h32.png) &emsp;[Jexus 用户手册](docs/manual.md) &emsp;[Jexus 官方网站](https://www.jexus.org) &emsp;[GitHub](https://github.com/yunekit/jexus) &emsp;[Gitee](https://gitee.com/yunekit/jexus)
+
+<!--
+![jws_logo](https://raw.githubusercontent.com/yunekit/jexus/refs/heads/main/images/jexus_logo_h32.png)
+![JWS_LOGO](images/jexus_logo_h32.png?raw=true)
+-->
