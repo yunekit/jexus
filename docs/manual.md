@@ -524,7 +524,7 @@ Nginx是一款众所周知的优秀的反向代理服务器，在中国国内被
 
 （3）清理网站bin文件夹：
 
-> 必须消除网站bin文件夹中多余程序集、精简dll数量。原则上，Jexus已自带的dll（在Jexus的“runtime/lib/mono”文件夹下），网站bin文件夹中不能重复，要尽可能减少从windows（VS开发环境）中带过来的dll。
+> 必须消除网站bin文件夹中多余程序集、精简dll数量。原则上，Jexus已经自带的dll（在Jexus的“runtime/lib/mono”文件夹下），网站bin文件夹中不能重复出现同版本的dll，要尽可能减少从windows（VS开发环境）中带过来的dll，减少跨平台兼容性方面的风险。
 
 6、哪些情况适合使用Jexus反向代理功能，哪些情况适合端口转发（AppHost.Port）?
 
@@ -574,6 +574,8 @@ v5.x、6.x属免费软件，所有用户可以自由下载、传播和使用，�
 （二）Jexus官网、社区及联系方式
 
 官方网站：www.jexus.org
+
+项目仓库：[\[GitHub\]](https://github.com/yunekit/jexus) &emsp;[\[Gitee\]](https://gitee.com/yunekit/jexus)
 
 技术社区：www.linuxdot.net
 
