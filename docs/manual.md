@@ -1,3 +1,4 @@
+
 -----------------------------------------------------------------------
 # Jexus 用户手册
 
@@ -65,9 +66,7 @@ Jexus除了具备通用WEB服务器所必备的功能外，还直接支持Asp.Ne
 
 （一）安装前的准备工作：
 
-1、GLIBC版本：Jexus
-7.0/7.1的编译环境是CentOS7.9，对GLIBC版本的最低要求是2.17，因此，Jexus应该在CentOS
-7.9、Ubuntu 16.04以上版本或者满足GLIBC版本要求的国产操作系统上运行。
+1、GLIBC版本：Jexus 7.0/7.1的编译环境是CentOS7.9，对GLIBC版本的最低要求是2.17，因此，Jexus应该在CentOS 7.9、Ubuntu 16.04以上版本或者满足GLIBC版本要求的国产操作系统上运行。
 
 2、依赖库：Jexus使用了.NET NativeAOT技术，集成了Mono环境，因此，安装Jexus的Linux系统需要存在或安装libicu、libkrb5函数库。常用Linux一般默认已经安装了libkrb6或libicu，部分系统需要手工安装。
 
