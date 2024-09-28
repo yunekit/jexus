@@ -53,7 +53,7 @@ Jexus除了具备通用WEB服务器所必备的功能外，还直接支持Asp.Ne
 
 （3）具有强劲的反向代理功能。Jexus支持全站反向代理、部分路径反向代理，支持多目标服务器反向代理（负载均衡），支持TCP"穿透"技术。Jexus的反向代理配置简洁灵活，性能好，功能强。
 
-（4）"AppHost"（自宿主WEB应用程序托管容器）是Jexus独创功能，它的作用是将ASP.NET Core或node.js、tomcat等"自宿主（自带http服务）"式的以控制台方式运行的web应用程序集以Jexus子进程的形式纳入Jexus统一管理，而无需进行反向代理设置，也无需采用其它方式对这些目标程序进行运行和守护；
+（4）"AppHost"（自宿主WEB应用程序托管容器）是Jexus独创功能，它的作用是将ASP.NET Core或node.js、tomcat等"自宿主（自带HTTP服务）"式的以控制台方式运行的web应用程序集以Jexus子进程的形式纳入Jexus统一管理，而无需进行反向代理设置，也无需采用其它方式对这些目标程序进行运行和守护；
 
 （5）具备基于正则表达式的强大的"URL重写"功能；
 
@@ -97,7 +97,7 @@ Jexus安装包是一个"tar.gz"压缩包，因此，"离线安装"过程，其�
 
 2、将安装包上传到服务器的安装目录。Jexus习惯上使用"/usr/jexus"作为工作目录，因此，建议你把安装包上传到"/usr/"文件夹中。
 
-3、解压：在jexus安装包所在文件夹中，以root身份解压Jexus压缩包（安装包）。如：sudo tar -zxvf jexus-7.0.x-x64.tar.gz
+3、解压：在jexus安装包所在文件夹中，以root身份解压Jexus压缩包（安装包）。如：sudo tar -zxvf jexus-7.2.x-x64.tar.gz
 
 4、删除安装包。
 
@@ -121,9 +121,9 @@ Jexus安装包是一个"tar.gz"压缩包，因此，"离线安装"过程，其�
 
 （一）基本操作命令：
 
-Jexus核心命令是"jws"，如果你把jexus安装在"习惯"位置，即"/usr/jexus/"文件夹中，那么，含绝对路径的完整命令将是"/usr/jexus/jws"。
+Jexus核心命令是"jws"，如果你把jexus安装在"习惯"位置，即“/usr/jexus/”文件夹中，那么，含绝对路径的完整命令将是“/usr/jexus/jws”。
 
-"jws"其实是一个shell脚本文件，具体内容可以自行查看。
+“jws”其实是一个shell脚本文件，具体内容可以自行查看。
 
 Jexus的操作是通过为"jws"提供不同的操作参数实现的，包括“启动（start）”“停止（stop）”“重启(restart)”“运行状态(status)”“初始化（init）”“显示版本（-V）”。初始化和显示版本号已经在前文进行了说明，不再此处复述。
 
@@ -169,11 +169,11 @@ sudo /usr/jexus/jws status
 
 让Jexus实现开机启动，有两个办法（强调：只能选其中之一）：
 
-**方法一**：通过"/etc/rc.local"进行。
+**方法一**：通过“/etc/rc.local”进行。
 
-具体方法是：在"/etc/rc.local"文件中加入"/usr/jexus/jws start"一行。
+具体方法是：在“/etc/rc.local”文件中加入“/usr/jexus/jws start”一行。
 
-此方法使用简便，但要注意：一是要把jws的路径和文件名写正确，要使用"jws"命令文件的绝对路径；二是rc.local文件要有"可执行"属性，建议运行一下这个命令："sudo chmod +x /etc/rc.local"。
+此方法使用简便，但要注意：一是要把jws的路径和文件名写正确，要使用“jws”命令文件的绝对路径；二是rc.local文件要有"可执行"属性，建议运行一下这个命令：“sudo chmod +x /etc/rc.local”。
 
 **方法二**：将jexus注册到systemd中成为系统服务。
 
