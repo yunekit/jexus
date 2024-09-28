@@ -25,7 +25,7 @@
 
 Jexus是Linux平台上具有高安全性、高可靠性、高稳定性的高性能WEB服务器、反向代理网关服务器和自宿主WEB应用程序的托管（容器）服务器。
 
-Jexus除了具备通用WEB服务器所必备静态文件处理和缓存功能外，还直接支持ASP.NET WEB应用程序，支持PHP，支持反向代理。自6.0版开始，Jexus开创性地设计了“AppHost”功能（HTTP应用程序容器），通过此功能，Jexus可以为Asp.Net Core、Tomcat、GoLang Web、Python Web等“自带HTTP功能的WEB应用程序”提供一体化集成管理。
+Jexus除了具备通用WEB服务器所必备的静态文件处理和缓存功能外，还直接支持ASP.NET WEB应用程序，支持PHP，支持反向代理。自6.0版开始，Jexus开创性地设计了“AppHost”功能（HTTP应用程序容器），通过此功能，Jexus可以为Asp.Net Core、Tomcat、GoLang Web、Python Web等“自带HTTP功能的WEB应用程序”提供一体化集成管理。
 
 就中国而言，Jexus是一款完全由中国人自主研发的具有原创性特质的国产服务器软件，支持国产操作系统和国产CPU芯片，真正做到了“安全、可靠、可信、可控”，具备我国党政机关和重要企事业单位信息化建设所需要的关键品质。
 
@@ -506,17 +506,25 @@ Jexus从2008年正式公开发布以来，一直受到了国内外Web建设者�
 “传统Asp.Net”指的是有别于“Asp.Net Core”的基于传统的“.NET Framework（.NET 1.0-4.8.x）”运行环境的 .NET WEB应用程序框架。
 传统的ASP.NET程序在Linux上运行是依赖“mono”这个开源的跨平台运行时及其相应的跨平台通用类库（Jexus已集成mono环境，不需要单独安装）。现在，mono在技术上已经成熟，性能也很优秀，但由于它需要照顾“跨平台”这个特殊需求，部分特性必须作出一些折中处理，因此部分性能可能略弱于只能在Windows系统上运行的.NET Framework。
 
-3、为什么说Jexus是Asp.Net Core的最理想的宿主服务器？
+**3、为什么说Jexus是Asp.Net Core的最理想的宿主服务器？**
 
-4、作反向代理服务器，用Jexus还是用Nginx？
+Jexus通过“AppHost”配置支持ASP.NET Core应用程序。“AppHost”是Jexus专门针对那些自身具有http通讯功能的WEB应用程序设计的一项服务功能，该功能相当于一个容器，把HTTP自宿主应用程序作为Jexus的一个子进程纳入Jexus的统一管理、守护和进程间数据转发，ASP.NET Core等HTTP自宿主程序不再需要寻求其它方式运行和守护，具有维护简单，管理方便和数据转发高效稳定的优势。
 
-5、迁移Asp.Net应用程序到Linux平台时要注意些什么？
+值得一提的是，Jexus不但是ASP.NET Core的理想宿主，也可以是tomcat、node.js等自带HTTP功能的WEB应用程序的理想容器，它们都可以纳入Jexus的AppHost容器进行管控和运行。
 
-（1）编译发布
+**4、作反向代理服务器，用Jexus还是用Nginx？**
 
-（2）清理web.config
+Nginx是一款众所周知的优秀的反向代理服务器，在中国国内被广泛使用。Jexus同样也具有灵活高效的反向代理能力，与nginx不同的是，Jexus的反向代理具有安全检测功能，较nginx那种单纯的数据转发，Jexus的反向代理更加安全可靠。
 
-（3）清理bin文件夹，消除多余程序集、精简dll数量
+**5、迁移Asp.Net应用程序到Linux平台时要注意些什么？**
+
+（1）编译发布：建议使用预编译发布而不是直接将源码上传到服务器。
+
+（2）清理web.config：将web.config中的所有“\\”号改为“/”号；将所有的windows路径字串改为符合linux规范的linux路径。
+
+（3）清理网站bin文件夹：
+
+> 必须消除网站bin文件夹中多余程序集、精简dll数量。原则上，Jexus已自带的dll（在Jexus的“runtime/lib/mono”文件夹下），网站bin文件夹中不能重复，要尽可能减少从windows（VS开发环境）中带过来的dll。
 
 6、哪些情况适合使用Jexus反向代理功能，哪些情况适合端口转发（AppHost.Port）?
 
@@ -536,9 +544,7 @@ Jexus从2008年正式公开发布以来，一直受到了国内外Web建设者�
 
 14、如何获得商业使用授权？
 
-16、如果配置mime？
-
-17、为什么说不要在asp.net会话过程中开启多线程或使用async/await异步操作？
+15、为什么说不要在asp.net会话过程中开启多线程或使用async/await异步操作？
 
 ## 七、授权与交流
 
