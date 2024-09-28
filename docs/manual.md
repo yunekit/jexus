@@ -23,7 +23,7 @@
 
 ## 一、Jexus 概述
 
-Jexus是Linux平台上具有高安全性、高可靠性、高稳定性的高性能WEB服务器、反向代理网关服务器和自宿主WEB应用程序的托管服务器。
+Jexus是Linux平台上具有高安全性、高可靠性、高稳定性的高性能WEB服务器、反向代理网关服务器和自宿主WEB应用程序的托管（容器）服务器。
 
 Jexus除了具备通用WEB服务器所必备的功能外，还直接支持Asp.Net WEB应用，支持PHP，支持反向代理。自6.0版开始，Jexus开创性地设计了"AppHost"功能，通过此功能，Jexus可以为Asp.Net Core、Tomcat、GoLang Web、Python Web等"HTTP自宿主WEB应用程序"提供一体化集成管理。
 
@@ -51,13 +51,13 @@ Jexus除了具备通用WEB服务器所必备的功能外，还直接支持Asp.Ne
 
 （3）具有强劲的反向代理功能。Jexus支持全站反向代理、部分路径反向代理，支持多目标服务器反向代理（负载均衡），支持TCP"穿透"技术。Jexus的反向代理配置简洁灵活，性能好，功能强。
 
-（4）"AppHost"（自宿主WEB应用程序托管服务）是Jexus独创功能，它的作用是将asp.net core或node.js、tomcat等"自宿主（自带http服务）"式的以控制台方式运行的web应用程序集成到Jexus工作序列，纳入Jexus统一管理，而无需进行反向代理，无需采用其它方式进行运行和守护；
+（4）"AppHost"（自宿主WEB应用程序托管容器）是Jexus独创功能，它的作用是将ASP.NET Core或node.js、tomcat等"自宿主（自带http服务）"式的以控制台方式运行的web应用程序集以Jexus子进程的形式纳入Jexus统一管理，而无需进行反向代理设置，也无需采用其它方式对这些目标程序进行运行和守护；
 
 （5）具备基于正则表达式的强大的"URL重写"功能；
 
 （6）支持https，具有SSL（TLS v1.0-1.3）加密数据安全传输能力；
 
-（7）直接内置"入侵检测"安全模块，具有入侵检测和防御功能，能自动阻止已被识别的非法请求。这是Jexus有别于其它Web服务器的重要的特色功能之一；
+（7）直接内置“**入侵检测**”安全模块，具有入侵检测和防御功能，能自动识别和阻止非法请求。这是Jexus有别于其它Web服务器的重要的特色功能之一；
 
 （8）直接支持符合OWIN标准的WEB应用程序，如Nancy、SignalR等符合OWIN标准的应用框架，支持WebSocket；
 
@@ -69,9 +69,7 @@ Jexus除了具备通用WEB服务器所必备的功能外，还直接支持Asp.Ne
 7.0/7.1的编译环境是CentOS7.9，对GLIBC版本的最低要求是2.17，因此，Jexus应该在CentOS
 7.9、Ubuntu 16.04以上版本或者满足GLIBC版本要求的国产操作系统上运行。
 
-2、依赖库：Jexus使用了.NET
-NativeAOT技术，集成了Mono环境，因此，安装Jexus的Linux系统需要存在或安装
-libicu、libkrb5函数库。常用Linux一般默认已经安装了libkrb6或libicu，部分系统需要手工安装。
+2、依赖库：Jexus使用了.NET NativeAOT技术，集成了Mono环境，因此，安装Jexus的Linux系统需要存在或安装libicu、libkrb5函数库。常用Linux一般默认已经安装了libkrb6或libicu，部分系统需要手工安装。
 
 3、管理员身份：Jexus的安装、启动、停止等操作，操作者必须具备服务器管理员身份（即能使用su或sudo等命令提供root权限）。
 
@@ -97,9 +95,9 @@ Jexus安装包是一个"tar.gz"压缩包，因此，"离线安装"过程，其�
 
 1、下载：到www.jexus.org下载你需要的Jexus安装包。
 
-2、将安装包上传到服务器的安装目录。Jexus习惯上使用"/usr/jexus"作为工作目录，因此，建议你把安装包上传到"/usr"文件夹中。
+2、将安装包上传到服务器的安装目录。Jexus习惯上使用"/usr/jexus"作为工作目录，因此，建议你把安装包上传到"/usr/"文件夹中。
 
-3、解压：在jexus安装包所在文件夹中，以root身份解压Jexus压缩包（安装包）。如x86_64是：sudo tar -zxvf jexus-7.0.x-x64.tar.gz
+3、解压：在jexus安装包所在文件夹中，以root身份解压Jexus压缩包（安装包）。如：sudo tar -zxvf jexus-7.0.x-x64.tar.gz
 
 4、删除安装包。
 
