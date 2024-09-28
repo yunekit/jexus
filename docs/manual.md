@@ -137,7 +137,7 @@ sudo /usr/jexus/jws start
 
 sudo /usr/jexus/jws start 网站名
 
-*注："网站名"在Jexus中，指的是网站配置文件名，jexus的网站配置文件即是"网站名"。*
+*\* 注："网站名"在Jexus中，指的是网站配置文件名，jexus的网站配置文件即是"网站名"。*
 
 2、停止命令
 
