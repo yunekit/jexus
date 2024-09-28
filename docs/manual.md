@@ -188,7 +188,7 @@ sudo /usr/jexus/jws status
 
 5、注销服务：sudo systemctl disable jws
 
-*\*\*\* 特别强调：一旦jexus被注册为系统服务之后，jexus的启动、停止、重启等操作只能使用systemctl进行操作，不能再使用不带网站参数的"jws start""jws stop""jws restart"等命令进行操作。*
+*\*\*\* 特别强调：一旦jexus被注册为系统服务之后，jexus的启动、停止、重启等操作只能使用systemctl命令进行操作，不能再使用不带网站参数的“jws start xx”“jws stop xx”“jws restart xx”等命令进行操作。*
 
 ## 四、Jexus 的全局配置
 
