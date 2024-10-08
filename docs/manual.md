@@ -1,6 +1,6 @@
 # Jexus 用户手册
 
-*VERSION: 7.x*
+*VERSION: 7.0, Available for Jexus v6.x/7.x*
 
 **作者：宇内流云（j66x@163.com）**
 
