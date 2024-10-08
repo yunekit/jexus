@@ -501,7 +501,7 @@ Jexus支持各种符合OWIN协议的 .NET WEB 应用。OWIN应用应该添加一
 
 *有关OWIN应用及适配器代码编写方面的问题和技术，由于专业性较强，需要进一步了解的朋友可以与Jexus作者联系。或参考github上的开源项目 [TinyFox.FastWebApi](https://https://github.com/yunekit/TinyFox.FastWebApi) 的源代码*
 
-具备“适配器”这个前提后，网站开启OWIN应用的办法是在网站配置文件中，添加 OwinMain 项，这个项的值就是具有OwinMain方法的类库（程序集）的名称。如：
+具备“适配器”这个前提后，网站开启OWIN应用的办法是在网站配置文件中，添加 OwinMain 项，这个项的值就是具有OwinMain方法的类库（程序集）的名称，如：
 
 ```
 OwinMain = MyOwinApp.dll
