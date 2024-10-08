@@ -192,7 +192,9 @@ sudo /usr/jexus/jws status
 
 ## 四、Jexus 的全局配置
 
-在jexus的工作文件夹中（一般是"/usr/jexus"）有一个基本的配置文件，文件名是"jws.conf"，这是Jexus的全局配置文件。
+**1、jws.conf 配置**
+
+在jexus的工作文件夹中（一般是"/usr/jexus"）有一个基本的配置文件，文件名是"jws.conf"，这是Jexus的最重要的全局配置文件。
 
 主要配置项如下：
 
@@ -211,6 +213,13 @@ Httpd.MaxCpuTime：表示Jexus的httpd工作进程最多能使用多少cpu时间
 Httpd.MaxConnPerIp：表示jexus httpd工作进程允许每个IP地址能同时发出多少个TCP连接，当某IP地址超过这个数量的连接时，Jexus将拒绝接受。设为0表示禁用这个选项。
 
 Php-fcgi.Set：PHP运行环境设置，本设置的值分两部分，两个部分之间用英文逗号分开。第一部分是指定php-cgi命令文件的完整路径（一般是"/usr/bin/php-cgi"）；第二部分是设定php-cgi的最大工作进程数量。本项设置不是必须的，如果你服务器不通过Jexus直接运行PHP WEB程序，就可以禁用该项（在配置行前加"#"号）。
+
+**2、mime.conf 配置**
+
+Jexus 中，描述数据类型的配置文件是 jexus 根文件夹中的 mime.conf 文件，它是一个文本文件，可以使用 vim 等任何文本工具进行编辑修改。
+
+mime.conf 文件中，每一行代表一个类型的数据，由“文件扩展名”和“数据类型描述”两部分组成，两部分由英文冒号分开。
+
 
 ## 五、Jexus 的网站配置
 
@@ -486,9 +495,17 @@ User：可选项。以指定的用户身份运行该应用程序，默认为root
 3、不要同时启用AppHost和AppHost.Port。
 
 
-**18、Mime配置**
+**18、OWIN 配置**
 
-Jexus中，描述数据类型的配置文件是jexus根文件夹中的mime.conf文件，它是一个文本文件，可以使用vim等任何文本工具进行编辑修改。mime.conf每行代表一个类型的数据，每一行由“文件扩展名”和“数据类型描述”两部分组成，两部分由英文冒号分开。
+Jexus支持各种符合OWIN协议的 .NET WEB 应用。OWIN应用应该添加一个“适配器”（一个.NET class）提供给Jexus调用，该适配器中必须包括一个名叫 OwinMain 的公共方法，该方法是Jexus与OWIN WEB应用进行数据交换的核心通道。
+
+*有关OWIN应用及适配器代码编写方面的问题和技术，由于专业性较强，需要进一步了解的朋友可以与Jexus作者联系。或参考github上的开源项目 [TinyFox.FastWebApi](https://https://github.com/yunekit/TinyFox.FastWebApi) 的源代码*
+
+具备“适配器”这个前提后，网站开启OWIN应用的办法是在网站配置文件中，添加 OwinMain 项，这个项的值就是具有OwinMain方法的类库（程序集）的名称。如：
+
+```
+OwinMain = MyOwinApp.dll
+```
 
 ## 六、问 答
 
