@@ -427,6 +427,13 @@ ssl.ciphers=ECDHE-RSA-AES256-GCM-SHA384:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!A
 
 另外，当Asp.Net使用多进程并行处理时，为了在验证数据的加密、解密方面保证一致性，还应该在web.config文件夹中的"system.web"节中配置"machineKey"项。例如作如下配置：
 
+```
+<machineKey 
+    validationKey="32E35872597989D14CC1D5D9F5B1E94238D0EE32CF10AA2D2059533DF6035F4F" 
+    decryptionKey="B179091DBB2389B996A526DE8BCD7ACFDBCAB04EF1D085481C61496F693DF5F4" 
+/>
+```
+
 设置ASP.NET多进程数量并非越多越好，要综合考虑服务器CPU核数、可用内存、并发压力等多方面因素。一般来说，进程数量配置为CPU核数的一半就行了，最多不要超过CPU的核心数。
 
 （2）限制ASP.NET消耗CPU的时间数（默认为0，无限制）：
