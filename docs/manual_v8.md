@@ -202,23 +202,29 @@ SiteConfigDir：指定网站配置文件夹的路径，默认配置是jexus程�
 
 SiteLogDir：指定jexus日志和网站访问日志的存放路径。默认配置是jexus程序文件夹下的"log"子目录。该项配置不建议修改。
 
-Httpd.Processes：指的是jexus httpd工作进程的数量，默认为2，设为0表示自动，即由jexus根据服务器cpu数量自行确定。
+Httpd.Processes：指的是jexus的httpd工作进程的数量（不是ASP.NET工作进程数量），默认为1，设为0表示自动，即由jexus根据服务器cpu数量自行确定。
 
-该项配置能影响Jexus处理html等静态文件以及数据转发等方面的性能，其具体数量应该结合服务器cpu数量、内存富余度和并发请求数量综合考虑，一般来情况下配置2个进程就行，如果服务器并发流量大，可以按cpu核心数的三分之一或二分之一设置。
+*该项配置能影响Jexus处理html等静态文件以及数据转发等方面的性能，其具体数量应该结合服务器cpu数量、内存富余度和并发请求数量综合考虑，一般来情况下配置2个进程就行，如果服务器负载重、并发量大、cpu核心数量多，可以按cpu核心数的四分之一（最多二分之一）设置。*
 
 Httpd.MaxTotalMemory：指的是允许Jexus的httpd工作进程最多使用多少内存，单为是"兆字节"，设为0表示"自动"。
 
-Httpd.MaxCpuTime：表示Jexus的httpd工作进程最多能使用多少cpu时间，单位为秒，达到这个时间值后，jexus的httpd工作进程就会自动重启。设为0表示禁用这个选项。
+Httpd.MaxCpuTime：表示Jexus的httpd工作进程最多能使用多少cpu时间，单位为秒，达到这个时间值后，jexus的httpd工作进程就会自动重启。设为0表示禁用这个选项（不建议启用这个先选项）。
 
 Httpd.MaxConnPerIp：表示jexus httpd工作进程允许每个IP地址能同时发出多少个TCP连接，当某IP地址超过这个数量的连接时，Jexus将拒绝接受。设为0表示禁用这个选项。
 
-Php-fcgi.Set：PHP运行环境设置，本设置的值分两部分，两个部分之间用英文逗号分开。第一部分是指定php-cgi命令文件的完整路径（一般是"/usr/bin/php-cgi"）；第二部分是设定php-cgi的最大工作进程数量。本项设置不是必须的，如果你服务器不通过Jexus直接运行PHP WEB程序，就可以禁用该项（在配置行前加"#"号）。
+*Jexus统计每IP发出的连接数是由与它连接的socket所反映的IP地址决定的，如果你在Jexus服务器前边没配备了其它反向代理服务器，Jexus只能得到该反向代理服务器的地址，这次架构下，请不要在Jexus上设置IP数限制。*
+
+Php-fcgi.Set：Jexus的PHP FastCGI管理器配置。本设置的值分两部分，两个部分之间用英文逗号分开。第一部分是指定php-cgi命令文件的完整路径（一般是"/usr/bin/php-cgi"），第二部分是设定php-cgi的最大工作进程数量。本项设置不是必须的，如果你服务器没有PHP网站或者有其它的方式提供PHP环境（比如使用了php-fpm），就不必启用该选项。
 
 **2、mime.conf 配置**
 
 Jexus 中，描述数据类型的配置文件是 jexus 根文件夹中的 mime.conf 文件，它是一个文本文件，可以使用 vim 等任何文本工具进行编辑修改。
 
-mime.conf 文件中，每一行代表一个类型的数据，由“文件扩展名”和“数据类型描述”两部分组成，两部分由英文冒号分开。
+mime.conf 文件中，每一行代表一个类型的数据，由“文件扩展名”和“数据类型描述”两部分组成，两部分由英文冒号分开，如：
+
+```
+wasm:   application/wasm
+```
 
 
 ## 五、Jexus 的网站配置
@@ -256,9 +262,9 @@ Jexus已经内置默认首页的定义，包括index.html、index.htm、default.
 **2、URL重写（rewrite）：**
 
 "URL重写"是指WEB服务器将访问者向服务器发起的URL请求按指定的匹配规则解释和匹配到另外的一个真实RUL路径资源上。比如，当访问者访问".php"、".asp"等类型的文件时，服务器以 "/404.html" 这个URL应答，你可以设为：
-
-rewrite=\^/.+?\\.(asp\|php\|cgi)\$ /404.html
-
+```
+rewrite=^/.+?\.(asp|php|cgi)$ /404.html
+```
 rewrite格式：
 
 "rewrite="的后面是两部分阻成，两部分之间由一个空格分开。
@@ -270,11 +276,10 @@ rewrite格式：
 如：
 
 把"/bbs"匹配到"/bbs/index.aspx"，把"/bbs/file-编号" 匹配到"/bbs/show.aspx?id=编号"：
-
-rewrite=\^/bbs\$ /bbs/index.aspx
-<br>
-rewrite=\^/bbs/file-(\[0-9\]{1,6})\$ /bbs/show.aspx?id=\$1
-
+```
+rewrite=^/bbs$ /bbs/index.aspx
+rewrite=^/bbs/file-([0-9]{1,6})$ /bbs/show.aspx?id=$1
+```
 格式解释：rewrite的等号后含有两部分内容，用空隔分开。前半部分是一个正则表达式，用于描述需要URL重写的（用户浏览器中的）url路径样式，后半部分是当用户的URL合乎前面的正则表达式时，JWS应该重写和访问的真实URL路径。
 
 **3、禁止或允许某IP或IP段访问网站（denyfrom、allowfrom）**：
@@ -405,9 +410,9 @@ ssl.certificatekey=密钥文件的完整路径和文件名
 
 ssl.protocol=版本列表
 
-指的是ssl的版本号，包括：TLSv1.0、TLSv1.1、TLSv1.2和TLSv1.3。可以同时多个版本号，各版本号之间用空格分隔。
+指的是ssl及tls协议及版本号，包括：TLSv1.0、TLSv1.1、TLSv1.2和TLSv1.3。可以同时多个版本号，各版本号之间用空格分隔。
 
-该选项不是必填项，但为了安全起见，建议启用并选择TLSv1.1、TLSv1.2、1.3三个版本号。
+*\* 该选项不是必填项，但为了安全起见，建议启用并只选择TLSv1.1、TLSv1.2、1.3三个版本号，甚至只使用TLSv1.2、TLSv1.3两个版本号。*
 
 （4）加密套件：
 
@@ -582,6 +587,7 @@ Nginx是一款在中国国内使用得比较广泛的一款优秀的反向代理
 
 简单地说，就是为了保证ASP.NET上下文的连贯性，让运行时正确把握会话的生命周期。如果我们在处理请求过程中使用了多线程等异步操作，ASP.NET引擎将失去对该会话的运行状态和生命周期的把握，其直接后果就是在会话处理并没有真正完成之前就提前结束了会话。
 
+
 ## 七、授权与交流
 
 （一）Jexus的使用授权与相互支持
@@ -608,7 +614,7 @@ Nginx是一款在中国国内使用得比较广泛的一款优秀的反向代理
 
 （二）Jexus官网、社区及联系方式
 
-官方网站：www.jexus.org
+官方网站：[www.jexus.org](https://www.jexus.org/ "Jexus Web Server官网")
 
 项目仓库：[\[GitHub\]](https://github.com/yunekit/jexus) &emsp;[\[Gitee\]](https://gitee.com/yunekit/jexus)
 
