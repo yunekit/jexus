@@ -596,7 +596,7 @@ Jexus文件夹中自带了根证书更新程序“cert-sync”，它的参数是
 Ubuntu等Debian系操作系统：
 sudo /usr/jexus/cert-sync /etc/ssl/certs/ca-certificates.crt
 
-CentOS等RedHat系统操作系统：
+CentOS等RedHat系操作系统：
 sudo /usr/jexus/cert-sync /etc/pki/tls/certs/ca-bundle.crt
 ```
 
