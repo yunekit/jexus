@@ -46,7 +46,7 @@ Jexus除了具备通用WEB服务器所必备的静态文件处理和缓存功能
 
 首先，Jexus是一款如同Nginx、Apache那样的"通用web服务器"，具有通用web服务器必要的功能，除此之外，Jexus还具备如下功能特征：
 
-（1）支持ASP.NET。在Linux上支持Asp.Net运行，是Jexus的重要的特色功能之一（甚至一度被部分用户误认为Jexus就是一款单纯的Asp.Net服务器）。Jexus直接支持.NET Framework 3.5---4.8范围内的所有版本的Asp.Net Web程序。Jexus7.0以上版本已经集成.NET运行环境，服务器无需另行安装mono之类的.NET运行时。
+（1）支持ASP.NET。在Linux上支持Asp.Net运行，是Jexus的重要的特色功能之一（甚至一度被部分用户误认为Jexus就是一款单纯的Asp.Net服务器）。Jexus直接支持.NET Framework 3.5至4.8范围内的所有版本的Asp.Net Web程序。Jexus v6.0以上版本已经集成.NET运行环境，服务器无需另行安装mono之类的.NET运行时。
 
 （2）提供Fast-CGI协议支持。通过Fast-CGI，Jexus能支持包括PHP在内的所有拥有Fast-CGI服务接口的WEB应用；
 
@@ -62,6 +62,8 @@ Jexus除了具备通用WEB服务器所必备的静态文件处理和缓存功能
 
 （8）直接支持符合OWIN标准的WEB应用程序，如Nancy、SignalR等符合OWIN标准的应用框架，支持WebSocket；
 
+（9）支持包括龙芯在内的国产CPU和国产操作系统。
+
 ## 二、Jexus 的安装与更新
 
 （一）安装前的准备工作：
@@ -76,14 +78,21 @@ Jexus除了具备通用WEB服务器所必备的静态文件处理和缓存功能
 
 指的是服务器能够连接互联网，服务器通过互联网从Jexus官方网站获取最新正式版安装包进行自动安装。安装命令是：
 
-X86_64（amd64）系统：
+- X86_64（amd64）系统：
 ```
-curl https://jexus.org/release/x64/install.sh | sh
+curl https://jexus.org/release/x64/install.sh | sudo sh
 ```
-AARCH64（arm64）系统：
+
+- AARCH64（arm64）系统：
 ```
-curl https://jexus.org/release/arm64/install.sh | sh
+curl https://jexus.org/release/arm64/install.sh | sudo sh
 ```
+
+- 龙芯（LoogArch64）系统：
+```
+curl https://jexus.org/release/la64/install.sh | sudo sh
+```
+
 *\* 强调：使用上述命令前应该确定自己当前身份是否是root身份。*
 
 （三）离线安装：
@@ -115,6 +124,7 @@ Jexus安装包是一个"tar.gz"压缩包，因此，"离线安装"过程，其�
 1、检查Jexus版本号的命令是"/usr/jexus/jws -V"，如果Jexus安装正常，此命令将打印出Jexus的版本号以及集成的 mono.net 运行时的版本号。
 
 2、初始化命令是"sudo /usr/jexus/jws init"，这是安装Jexus后的非必要操作，但是建议执行一次。
+
 
 ## 三、Jexus 的操作命令
 
@@ -188,7 +198,8 @@ sudo /usr/jexus/jws status
 
 5、注销服务：sudo systemctl disable jws
 
-*\*\*\* 特别强调：一旦jexus被注册为系统服务之后，jexus的启动、停止、重启等操作只能使用systemctl命令进行操作，不能再使用不带网站参数的“jws start xx”“jws stop xx”“jws restart xx”等命令进行操作。*
+*\*\*\* 特别强调：一旦jexus被注册为系统服务之后，jexus的启动、停止、重启等操作只能使用systemctl命令进行操作，不能再使用不带网站参数的“jws start”“jws stop”“jws restart”等命令进行操作。*
+
 
 ## 四、Jexus 的全局配置
 
@@ -350,9 +361,9 @@ Reproxy=/ 1.1.1.1:5000, 2.2.2.2:5000 &emsp;（多目标服务器反代）
 
 注意：当"部分反代"和"全站反代"多条规则同时出现时，一定要把"全站反代"那一条规则放到最后。
 
-**10、透明代理（TCP透传，transparent参数）：**
+**10、透明反代（TCP透传）：**
 
-这是Jexus7.1新增功能，具体内容待述。
+这是Jexus 7.1开始支持的技术，具体操作办法就是在反向代理设置项中，加上“Transparent”字串参数。更多相关信息请参见本手册“问答”部分。
 
 **11、使用FAST-CGI提供的服务（FastCGI.Add）：**
 

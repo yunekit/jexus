@@ -1,6 +1,6 @@
 # Jexus 用户手册
 
-*version: 8.0*
+*version: 8.0 for jexus 8.x*
 
 **作者：宇内流云（j66x@163.com）**
 
@@ -21,6 +21,7 @@
 六、问 答 [......](#六问-答)
 
 七、授权与交流 [......](#七授权与交流)
+
 
 ## 一、Jexus 概述
 
@@ -46,21 +47,26 @@ Jexus除了具备通用WEB服务器所必备的静态文件处理和缓存功能
 
 首先，Jexus是一款如同Nginx、Apache那样的"通用web服务器"，具有通用web服务器必要的功能，除此之外，Jexus还具备如下功能特征：
 
-（1）支持ASP.NET。在Linux上支持Asp.Net运行，是Jexus的重要的特色功能之一（甚至一度被部分用户误认为Jexus就是一款单纯的Asp.Net服务器）。Jexus直接支持.NET Framework 3.5---4.8范围内的所有版本的Asp.Net Web程序。Jexus7.0以上版本已经集成.NET运行环境，服务器无需另行安装mono之类的.NET运行时。
+（1）支持ASP.NET。在Linux上支持Asp.Net运行，是Jexus的重要的特色功能之一（甚至一度被部分用户误认为Jexus就是一款单纯的Asp.Net服务器）。Jexus直接支持.NET Framework 3.5--4.8范围内的所有版本的Asp.Net Web程序。Jexus6.0以上版本已经集成.NET运行环境，服务器无需另行安装mono之类的.NET运行时。
 
 （2）提供Fast-CGI协议支持。通过Fast-CGI，Jexus能支持包括PHP在内的所有拥有Fast-CGI服务接口的WEB应用；
 
-（3）具有强劲的反向代理功能。Jexus支持全站反向代理、部分路径反向代理，支持多目标服务器反向代理（负载均衡），支持TCP"穿透"技术。Jexus的反向代理配置简洁灵活，性能好，功能强。
+（3）具有强劲的反向代理功能。Jexus支持全站反向代理、部分路径反向代理，支持多目标服务器反向代理（负载均衡），支持TCP“穿透”技术。Jexus的反向代理配置简洁灵活，性能好，功能强。
 
-（4）"AppHost"（自宿主WEB应用程序托管容器）是Jexus独创功能，它的作用是将ASP.NET Core或node.js、tomcat等"自宿主（自带HTTP服务）"式的以控制台方式运行的web应用程序集以Jexus子进程的形式纳入Jexus统一管理，而无需进行反向代理设置，也无需采用其它方式对这些目标程序进行运行和守护；
+（4）"AppHost"（自宿主WEB应用程序托管容器）是Jexus独创功能，它的作用是将ASP.NET Core或Node.js、Tomcat、Golang Web等“自宿主（自带HTTP服务）”型的以控制台方式运行的web应用程序以Jexus子进程的形式纳入Jexus统一管控与守护，而无需进行反向代理设置，也无需采用其它方式对这些目标程序进行运行和守护；
 
-（5）具备基于正则表达式的强大的"URL重写"功能；
+（5）具备基于标准的正则表达式语法的强大的“URL重写”功能；
 
-（6）支持https，具有SSL（TLS v1.0-1.3）加密数据安全传输能力；
+（6）支持HTTPS，具有SSL（TLS v1.0-1.3）加密数据安全传输能力；
 
-（7）直接内置“**入侵检测**”安全模块，具有入侵检测和防御功能，能自动识别和阻止非法请求。这是Jexus有别于其它Web服务器的重要的特色功能之一；
+（7）**支持“国密”**，这对于我国“信创”建设具有重要的意义；
 
-（8）直接支持符合OWIN标准的WEB应用程序，如Nancy、SignalR等符合OWIN标准的应用框架，支持WebSocket；
+（8）直接内置“**入侵检测**”安全模块，具有入侵检测和防御功能，能自动识别和阻止非法请求。这是Jexus有别于其它Web服务器的重要的特色功能之一；
+
+（9）直接支持符合OWIN标准的WEB应用程序，如Nancy、SignalR等符合OWIN标准的应用框架，支持WebSocket；
+
+（10）支持包括龙芯在内的国产CPU和国产操作系统。
+
 
 ## 二、Jexus 的安装与更新
 
@@ -76,14 +82,21 @@ Jexus除了具备通用WEB服务器所必备的静态文件处理和缓存功能
 
 指的是服务器能够连接互联网，服务器通过互联网从Jexus官方网站获取最新正式版安装包进行自动安装。安装命令是：
 
-X86_64（amd64）系统：
+- X86_64（amd64）系统：
 ```
-curl https://jexus.org/release/x64/install.sh | sh
+curl https://jexus.org/release/x64/install.sh | sudo sh
 ```
-AARCH64（arm64）系统：
+
+- AARCH64（arm64）系统：
 ```
-curl https://jexus.org/release/arm64/install.sh | sh
+curl https://jexus.org/release/arm64/install.sh | sudo sh
 ```
+
+- 龙芯（LoogArch64）系统：
+```
+curl https://jexus.org/release/la64/install.sh | sudo sh
+```
+
 *\* 强调：使用上述命令前应该确定自己当前身份是否是root身份。*
 
 （三）离线安装：
@@ -92,15 +105,15 @@ curl https://jexus.org/release/arm64/install.sh | sh
 
 Jexus安装包是一个"tar.gz"压缩包，因此，"离线安装"过程，其实就是下载安装包，传输到目标服务器，解压到工作目录这样的操作过程。
 
-1、下载：到www.jexus.org下载你需要的Jexus安装包。
+1. 下载：到www.jexus.org下载你需要的Jexus安装包。
 
-2、将安装包上传到服务器的安装目录。Jexus习惯上使用"/usr/jexus"作为工作目录，因此，建议你把安装包上传到"/usr/"文件夹中。
+2. 将安装包上传到服务器的安装目录。Jexus习惯上使用"/usr/jexus"作为工作目录，因此，建议你把安装包上传到"/usr/"文件夹中。
 
-3、解压：在jexus安装包所在文件夹中，以root身份解压Jexus压缩包（安装包）。如：sudo tar -zxvf jexus-7.2.x-x64.tar.gz
+3. 解压：在jexus安装包所在文件夹中，以root身份解压Jexus压缩包（安装包）。如：sudo tar -zxvf jexus-8.0.x-x64.tar.gz
 
-4、删除安装包。
+4. 删除安装包。
 
-5、从备份文件夹中恢复之前Jexus的配置文件（如果有）。
+5. 从备份文件夹中恢复之前Jexus的配置文件（如果有）。
 
 （四）关于Jexus的更新或重装：
 
@@ -112,19 +125,20 @@ Jexus安装包是一个"tar.gz"压缩包，因此，"离线安装"过程，其�
 
 （五）检查版本和初始化：
 
-1、检查Jexus版本号的命令是"/usr/jexus/jws -V"，如果Jexus安装正常，此命令将打印出Jexus的版本号以及集成的 mono.net 运行时的版本号。
+1、检查Jexus版本号的命令是“/usr/jexus/jws -V”，如果Jexus安装正常，此命令将打印出Jexus的版本号以及集成的 mono.net 运行时的版本号。
 
-2、初始化命令是"sudo /usr/jexus/jws init"，这是安装Jexus后的非必要操作，但是建议执行一次。
+2、初始化命令是“sudo /usr/jexus/jws init”，这是安装Jexus后的非必要操作，但是建议执行一次。
+
 
 ## 三、Jexus 的操作命令
 
 （一）基本操作命令：
 
-Jexus核心命令是"jws"，如果你把jexus安装在"习惯"位置，即“/usr/jexus/”文件夹中，那么，含绝对路径的完整命令将是“/usr/jexus/jws”。
+Jexus核心命令是“jws”，如果你把jexus安装在“习惯位置”，即“/usr/jexus/”文件夹中，那么，含绝对路径的完整命令将是“/usr/jexus/jws”。
 
 “jws”其实是一个shell脚本文件，具体内容可以自行查看。
 
-Jexus的操作是通过为"jws"提供不同的操作参数实现的，包括“启动（start）”“停止（stop）”“重启(restart)”“运行状态(status)”“初始化（init）”“显示版本（-V）”。初始化和显示版本号已经在前文进行了说明，不再此处复述。
+Jexus的操作是通过为“jws”提供不同的操作参数实现的，包括“启动（start）”“停止（stop）”“重启(restart)”“运行状态(status)”“初始化（init）”“显示版本（-V）”。初始化和显示版本号已经在前文进行了说明，不再此处复述。
 
 1、启动命令
 
@@ -188,7 +202,8 @@ sudo /usr/jexus/jws status
 
 5、注销服务：sudo systemctl disable jws
 
-*\*\*\* 特别强调：一旦jexus被注册为系统服务之后，jexus的启动、停止、重启等操作只能使用systemctl命令进行操作，不能再使用不带网站参数的“jws start xx”“jws stop xx”“jws restart xx”等命令进行操作。*
+*\*\*\* 特别强调：一旦jexus被注册为系统服务之后，jexus的启动、停止、重启等操作只能使用systemctl命令进行操作，不能再使用不带网站参数的“jws start”“jws stop”“jws restart”等命令进行操作。*
+
 
 ## 四、Jexus 的全局配置
 
@@ -364,9 +379,9 @@ Reproxy=/ 1.1.1.1:5000, 2.2.2.2:5000 &emsp;（多目标服务器反代）
 
 注意：当"部分反代"和"全站反代"多条规则同时出现时，一定要把"全站反代"那一条规则放到最后。
 
-**10、透明代理（TCP透传，transparent参数）：**
+**10、透明反代（反代中的transparent参数）：**
 
-这是Jexus7.1新增功能，具体内容待述。
+在反向代理设置项中，加上“Transparent”字串参数后，反向代理即成为“透明的”反向代理，即，后端服务器可以直接获得前端访问者的IP地址。更多的相关表述请参数本手册“问答”部分。
 
 **11、使用FAST-CGI提供的服务（FastCGI.Add）：**
 
@@ -416,9 +431,12 @@ ssl.protocol=版本列表
 
 （4）加密套件：
 
+指定SSL/TLS加、解密过程中使用和不使用的算法套件的列表，格式是“ssl.ciphers=套件列表”，如：
+```
 ssl.ciphers=ECDHE-RSA-AES256-GCM-SHA384:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE
+```
 
-本选项不是必填项。
+*本选项不是必填项。*
 
 **15、ASP.NET网站专用配置：**
 
