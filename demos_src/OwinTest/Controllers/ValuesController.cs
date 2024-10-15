@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 
-namespace ApiTest.Controllers
+namespace OwinTest.Controllers
 {
     public class ValuesController : ApiController
     {

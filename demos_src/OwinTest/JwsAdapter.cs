@@ -4,9 +4,9 @@ using Microsoft.Owin.Builder;
 using System.Threading.Tasks;
 
 
-namespace ApiTest
+namespace OwinTest
 {
-    public class Adapter
+    public class JwsAdapter
     {
         /// <summary>
         /// Microsoft.Owin入口
@@ -19,7 +19,7 @@ namespace ApiTest
         readonly static Task _canceledTask;
 
 
-        static Adapter()
+        static JwsAdapter()
         {
             var tcs = new TaskCompletionSource<object>();
             tcs.SetCanceled();
@@ -29,7 +29,7 @@ namespace ApiTest
         /// <summary>
         /// 适本器构造函数
         /// </summary>
-        public Adapter()
+        public JwsAdapter()
         {
             var builder = new AppBuilder();
             new Startup().Configuration(builder);

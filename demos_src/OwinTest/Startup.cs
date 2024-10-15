@@ -1,7 +1,7 @@
 ﻿using Owin;
 using System.Web.Http;
 
-namespace ApiTest
+namespace OwinTest
 {
     public class Startup
     {

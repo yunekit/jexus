@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR;
 
-namespace ApiTest.Controllers
+namespace OwinTest.Controllers
 {
     public class TestHub : Hub
     {
