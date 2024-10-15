@@ -1,6 +1,5 @@
 
-这是“纯OWIN模式”下的同时支持WebApi、SignalR功能的测试程序
-（能同时支持WebApi和SignalR，配合 html/js/css 等前端技术，意味着可以开发出超轻量的功能强大的服务端WEB应用）
+这是“纯OWIN模式”下的同时支持 WebApi、SignalR 功能的测试程序
 
 部署过程：
 1，在VS中，将该项目发布到开发机的某个目标文件夹中
