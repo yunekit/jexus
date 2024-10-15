@@ -1,4 +1,4 @@
-﻿# OWIN Web应用程序示例
+# OWIN Web应用程序示例
 
 这是一个不依赖 ASP.NET 环境的“纯OWIN”Web应用程序示例，可直接在Jexus和TinyFox上运行，简单调整后也能在IIS上运行。
 
