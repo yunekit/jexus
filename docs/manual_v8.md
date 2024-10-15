@@ -537,7 +537,7 @@ User：可选项。以指定的用户身份运行该应用程序，默认为root
 
 Jexus支持各种符合OWIN协议的 .NET WEB 应用。OWIN应用应该添加一个“适配器”（一个.NET class）提供给Jexus调用，该适配器中必须包括一个名叫 OwinMain 的公共方法，该方法是Jexus与OWIN WEB应用进行数据交换的核心通道。
 
-*有关OWIN应用及适配器代码编写方面的问题和技术，由于专业性较强，需要进一步了解的朋友可以与Jexus作者联系。或参考github上的Jexus开源项目中的 [OwinTest](https://github.com/yunekit/jexus/tree/main/demos_src/OwinTest) 的源代码*
+*有关OWIN应用及适配器代码编写方面的问题和技术，由于专业性较强，需要进一步了解的朋友可以与Jexus作者联系。或参考github上的Jexus开源项目中的 [OwinTest](https://github.com/yunekit/jexus/tree/main/Demos.src/OwinTest) 的源代码*
 
 具备“适配器”这个前提后，网站开启OWIN应用的办法是在网站配置文件中，添加 OwinMain 项，这个项的值就是具有OwinMain方法的类库（程序集）的名称，如：
 
