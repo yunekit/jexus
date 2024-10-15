@@ -1,10 +1,10 @@
 ﻿# OWIN Web应用程序示例
 
-这是一个“纯OWIN模式”的Web应用程序示例，不依赖ASP.NET，可直接在Jexus和TinyFox上运行，简单调整后也能在IIS上运行。
+这是一个不依赖 ASP.NET 环境的“纯OWIN”Web应用程序示例，可直接在Jexus和TinyFox上运行，简单调整后也能在IIS上运行。
 
 **示例功能：**
 
-- 标准的WebApi
+- WebApi
 - SignalR
 
 **部署过程：**
