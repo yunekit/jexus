@@ -7,18 +7,23 @@
 
     <style type="text/css">
         body {
-            line-height: 160%;
+            line-height: 180%;
             font-size: 18px;
         }
 
-        a {
+        li::marker {
             color: green;
-            text-decoration: none;
+        }
+
+        a {
+            color: #000;
         }
 
             a:hover {
                 color: red;
+                text-decoration: none;
             }
+
 
         #LogoTitle {
             height: 42px;
@@ -27,18 +32,20 @@
             background-color: #000;
             margin-bottom: 21px;
         }
+
             #LogoTitle span {
                 font-size: 20px;
                 font-family: 'Microsoft YaHei UI',SimHei;
                 font-style: italic;
                 color: white;
-                margin-left: 48px;
+                margin-left: 32px;
             }
+
             #LogoTitle img {
                 border-radius: 6px;
                 height: 24px;
                 margin-left: 9px;
-                margin-top:9px
+                margin-top: 9px
             }
     </style>
 
@@ -50,8 +57,8 @@
     </div>
 
     <ul>
-        <li>OWIN WebApi Demo： <a href="api/values">请点击这儿</a></li>
-        <li>WebSocket (SignalR) Demo：<a href="web_socket.html">请点击这儿</a></li>
+        <li><a href="api/values">OWIN WebApi Demo</a></li>
+        <li><a href="web_socket.html">WebSocket (SignalR) Demo</a></li>
     </ul>
 </body>
 </html>
