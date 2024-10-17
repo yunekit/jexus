@@ -15,17 +15,43 @@
             color: green;
             text-decoration: none;
         }
+
             a:hover {
                 color: red;
+            }
+
+        #LogoTitle {
+            height: 42px;
+            display: flex;
+            align-items: center;
+            background-color: #000;
+            margin-bottom: 21px;
+        }
+            #LogoTitle span {
+                font-size: 20px;
+                font-family: 'Microsoft YaHei UI',SimHei;
+                font-style: italic;
+                color: white;
+                margin-left: 48px;
+            }
+            #LogoTitle img {
+                border-radius: 6px;
+                height: 24px;
+                margin-left: 9px;
+                margin-top:9px
             }
     </style>
 
 </head>
 
 <body>
+    <div id="LogoTitle">
+        <a style="height:42px" target="_blank" title="Jexus官方网站" href="https://www.jexus.org/"><img src="images/jexus_logo_h32.png" /></a><span>OWIN WEB APPLICATION DEMOs</span>
+    </div>
+
     <ul>
-        <li>测试 Api： <a href="/api/values">请点击这儿</a></li>
-        <li>测试 WebSocket：<a href="/web_socket.html">请点击这儿</a></li>
+        <li>OWIN WebApi Demo： <a href="api/values">请点击这儿</a></li>
+        <li>WebSocket (SignalR) Demo：<a href="web_socket.html">请点击这儿</a></li>
     </ul>
 </body>
 </html>
