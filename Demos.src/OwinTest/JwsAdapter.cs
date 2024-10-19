@@ -6,19 +6,26 @@ using System.Threading.Tasks;
 
 namespace OwinTest
 {
+    /// <summary>
+    /// Jexus OWIN适配器（也适用于TinyFox）
+    /// </summary>
     public class JwsAdapter
     {
         /// <summary>
-        /// Microsoft.Owin入口
+        /// Microsoft OWIN 处理管线入口函数
         /// </summary>
         static Func<IDictionary<string, object>, Task> _owinAppFunc;
 
         /// <summary>
-        /// 一个表示取消的任务对象
+        /// 一个处于取消状态的任务对象
         /// </summary>
         readonly static Task _canceledTask;
 
 
+
+        /// <summary>
+        /// 静态构造函数
+        /// </summary>
         static JwsAdapter()
         {
             var tcs = new TaskCompletionSource<object>();
@@ -31,11 +38,11 @@ namespace OwinTest
         /// </summary>
         public JwsAdapter()
         {
+            //配置并构建OWIN处理管线
             var builder = new AppBuilder();
             new Startup().Configuration(builder);
             _owinAppFunc = builder.Build();
         }
-
 
 
 
@@ -61,7 +68,7 @@ namespace OwinTest
 
             if (isApiPath || isSignalRPath)
             {
-                //交给OWIN具体执行
+                //交给OWIN管道进行具体处理
                 return _owinAppFunc(env);
             }
             else
