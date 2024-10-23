@@ -613,17 +613,25 @@ Nginx是一款在中国国内使用得比较广泛的一款优秀的反向代理
 
 简单地说，就是为了保证ASP.NET上下文的连贯性，让运行时正确把握会话的生命周期。如果我们在处理请求过程中使用了多线程等异步操作，ASP.NET引擎将失去对该会话的运行状态和生命周期的把握，其直接后果就是在会话处理并没有真正完成之前就提前结束了会话。
 
-**11、如何更新Linux系统根证书？**
+**11、使用HttpClient对象与远程https服务器连接时出现验证失败的错误，怎么处理？**
 
-一般来说，新安装的Linux系统的SSL根证书是不齐全的也不是最新的，所以，当我们用HttpClient之类的组件访问某些https网站时可能出现SSL握手失败的情况，这就需要对操作系统的根证书进行更新。
+一般来说，新安装的Linux系统的SSL根证书是不完整的也不是最新的，所以，当我们用HttpClient之类的组件访问某些https网站时就可能出现SSL握手失败的情况，这时，我们可以有两种处理方式：
 
-Jexus文件夹中自带了根证书更新程序“cert-sync”，它的参数是操作系统根证书的路径和文件名，不同的系统有不同的位置。比如：
+处理办法一：更新根证书。Jexus文件夹中自带了根证书更新程序“cert-sync”，它的参数是操作系统根证书的路径和文件名，不同的系统有不同的位置。比如：
 ```
 Ubuntu等Debian系操作系统：
 sudo /usr/jexus/cert-sync /etc/ssl/certs/ca-certificates.crt
 
 CentOS等RedHat系操作系统：
 sudo /usr/jexus/cert-sync /etc/pki/tls/certs/ca-bundle.crt
+```
+
+处理办法二：对HttpClient设置参数，让其忽略服务器端证书验证。可参考下边的代码进行：
+```
+var handler = new System.Net.Http.HttpClientHandler(){
+    ServerCertificateCustomValidationCallback = (a, b, c, d) => true
+};
+var client = new System.Net.Http.HttpClient(handler);
 ```
 
 **12、Jexus在同一个端口号能支持配置多少个网站？**
