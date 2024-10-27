@@ -581,7 +581,13 @@ Nginx是一款在中国国内使用得比较广泛的一款优秀的反向代理
 
 将web.config中的所有“\\”号改为“/”号；将所有的windows路径字串改为符合linux规范的linux路径。
 
-（3）清理网站bin文件夹：
+（3）最小化引用
+
+用Visual Studio的ASP.NET模板创建的默认网站，VS会自动给你添加大量的程序集引用，大量的引用，看似更加完整，实际上也有负面作用：一方面很多程序集对你项目来说是用不上的，另一方面给跨平台的兼容性造成的隐患，所以，要认真请理引用，让引用的程序集数量“最小化”。
+
+具体的办法是在VS中打开“NuGet包管理器”，把用不上的引用卸载掉，比如“Microsoft.CodeDom.Providers.DotNetCompilerPlatform”这个引用就应该卸载掉。
+
+（4）清理网站bin文件夹：
 
  你的ASP.NET程序是在Windows上开发的，用的dll是Windows的，所以，为了更好地保证跨平台的兼容性，你 **必须消除网站bin文件夹中多余程序集**，精简dll数量。原则上，Jexus已经自带了的dll（在Jexus的“runtime/lib/mono”文件夹下），网站bin文件夹中就不应该再出现同名同版本的。要尽可能减少从windows（VS开发环境）中带过来的dll，提高兼容性，减少跨平台风险。
 
