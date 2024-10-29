@@ -468,14 +468,14 @@ ssl.ciphers=ECDHE-RSA-AES256-GCM-SHA384:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!A
 
 “自宿主web应用程序托管”是Jexus的一项独有的重要功能，它为Asp.Net Core的Kestrel、Java的Tomcat等自带http服务的“自宿主Web应用程序”提供了简单可靠、可控的一体化集成管理。
 
-格式：AppHost=\{Cmd=命令行; AppRoot=工作路径; AppPort=端口号\}
+格式：AppHost=\{Cmd=命令及参数; AppRoot=应用程序所在路径; AppPort=应用程序端口号\}
 
 也可以分行书写（分行书写时，AppHost和"={"必须在同一行），例如：
 
 ```code
 AppHost={
-  Cmd=命令行;
-  AppRoot=应该程序文件夹路径;
+  Cmd=命令及参数;
+  AppRoot=应用程序文件夹路径;
   AppPort=应用程序端口号;
 }
 ```
@@ -483,7 +483,7 @@ AppHost={
 
 Cmd：必选项。表示启动这个web应用程序的命令和命令参数，如 Cmd=dotnet /var/www/mysite/webapp.dll。
 
-AppRoot：非必选项。表示这个应用程序的工作目录，如：AppRoot=/var/www/mysite。如果本项没有指定，Jexus将使用网站root项中的根文件夹路径作为应用程序路径。
+AppRoot：非必选项。表示这个应用程序所在的文件夹路径，如：AppRoot=/var/www/mysite。如果本项没有指定，Jexus将使用网站root项中的根文件夹路径作为应用程序路径。
 
 AppPort：必填项。表示这个应用程序使用的侦听端口，多个端口用英文逗号分隔。
 
