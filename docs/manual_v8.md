@@ -495,9 +495,9 @@ ssl.ciphers=ECDHE-RSA-AES256-GCM-SHA384:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!A
 
 **17、自宿主WEB应用程序托管服务（AppHost）：**
 
-"自宿主web应用程序托管"是Jexus的一项独有的重要功能，它为Asp.Net Core、Node.js、Tomcat等自宿主Web程序提供了简单可靠、可控的一体化集成管理。
+“自宿主web应用程序托管”是Jexus的一项独有的富有创造性的重要功能，它为Asp.Net Core的Kestrel、Java的Tomcat甚至Node.js、golang web等自带Http服务的“自宿主Web应用程序”提供了简单可靠、可控的一体化集成管理。
 
-格式：AppHost={Cmd=命令行; AppRoot=工作路径; AppPort=端口号}
+格式：AppHost=\{Cmd=命令行; AppRoot=工作路径; AppPort=端口号\}
 
 也可以分行书写（分行书写时，AppHost和"={"必须在同一行），例如：
 
