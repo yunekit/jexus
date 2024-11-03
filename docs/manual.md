@@ -79,16 +79,19 @@ Jexus除了具备通用WEB服务器所必备的静态文件处理和缓存功能
 指的是服务器能够连接互联网，服务器通过互联网从Jexus官方网站获取最新正式版安装包进行自动安装。安装命令是：
 
 - X86_64（amd64）系统：
+
 ```
 curl https://jexus.org/release/x64/install.sh | sudo sh
 ```
 
 - AARCH64（arm64）系统：
+
 ```
 curl https://jexus.org/release/arm64/install.sh | sudo sh
 ```
 
 - 龙芯（LoogArch64）系统：
+
 ```
 curl https://jexus.org/release/la64/install.sh | sudo sh
 ```
@@ -259,7 +262,7 @@ Jexus已经内置默认首页的定义，包括index.html、index.htm、default.
 
 "URL重写"是指WEB服务器将访问者向服务器发起的URL请求按指定的匹配规则解释和匹配到另外的一个真实RUL路径资源上。比如，当访问者访问".php"、".asp"等类型的文件时，服务器以 "/404.html" 这个URL应答，你可以设为：
 
-rewrite=\^/.+?\\.(asp\|php\|cgi)\$ /404.html
+rewrite=^/.+?\\.(asp|php|cgi)$ /404.html
 
 rewrite格式：
 
@@ -273,9 +276,10 @@ rewrite格式：
 
 把"/bbs"匹配到"/bbs/index.aspx"，把"/bbs/file-编号" 匹配到"/bbs/show.aspx?id=编号"：
 
-rewrite=\^/bbs\$ /bbs/index.aspx
-<br>
-rewrite=\^/bbs/file-(\[0-9\]{1,6})\$ /bbs/show.aspx?id=\$1
+```
+rewrite=^/bbs$ /bbs/index.aspx
+rewrite=^/bbs/file-([0-9]{1,6})$ /bbs/show.aspx?id=$1
+```
 
 格式解释：rewrite的等号后含有两部分内容，用空隔分开。前半部分是一个正则表达式，用于描述需要URL重写的（用户浏览器中的）url路径样式，后半部分是当用户的URL合乎前面的正则表达式时，JWS应该重写和访问的真实URL路径。
 
@@ -307,7 +311,7 @@ denyfrom=101.201.1.132 &emsp;&emsp;\# 一个IP地址
 
 格式是：DenyDirs=PATH
 
-PATH指的是相对于网站根文件夹的URL路径，如 "/abcfiles"或"\~/abcfiles"。可以同时指定多个路径，用英文逗号分开。
+PATH指的是相对于网站根文件夹的URL路径，如 "/abcfiles"或"~/abcfiles"。可以同时指定多个路径，用英文逗号分开。
 
 **5、是否对请求的URL参数等进行安全检测（CheckQuery）**：
 
@@ -369,11 +373,11 @@ Reproxy=/ 1.1.1.1:5000, 2.2.2.2:5000 &emsp;（多目标服务器反代）
 
 对于TCP连接的fast-cgi：
 
-fastcgi.add=php \| tcp:127.0.0.1:9000
+fastcgi.add=php | tcp:127.0.0.1:9000
 
 对于unix sockets连接的FastCGI：
 
-fastcgi.add=php,php3 \| socket:/tmp/phpsvr
+fastcgi.add=php,php3 | socket:/tmp/phpsvr
 
 **12、启用或关闭gzip压缩功能（UseGZIP）:**
 
@@ -472,7 +476,7 @@ ssl.ciphers=ECDHE-RSA-AES256-GCM-SHA384:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!A
 
 也可以分行书写（分行书写时，AppHost和"={"必须在同一行），例如：
 
-```code
+```
 AppHost={
   Cmd=命令及参数;
   AppRoot=应用程序文件夹路径;
@@ -487,7 +491,7 @@ AppRoot：非必选项。表示这个应用程序所在的文件夹路径，如�
 
 AppPort：必填项。表示这个应用程序使用的侦听端口，多个端口用英文逗号分隔。特别强调，AppHost中的port不能与网站的port相同。
 
-Env：可选参数。表示这个应用程序工作时需要的环境变量，如Env=(PATH=/myhost/bin:\$PATH),多个设置用英文逗号分开。
+Env：可选参数。表示这个应用程序工作时需要的环境变量，如Env=(PATH=/myhost/bin:$PATH),多个设置用英文逗号分开。
 
 ErrLog：可选项。表示将这个应用程序的异常输出重定向到指定的文件（需填写完整路径）；
 
@@ -587,10 +591,10 @@ Nginx是一款在中国国内使用得比较广泛的一款优秀的反向代理
 一般来说，新安装的Linux系统的SSL根证书是不完整的也不是最新的，所以，当我们用HttpClient之类的组件访问某些https网站时就可能出现SSL握手失败的情况，这时，我们可以有两种处理方式：
 
 处理办法一：更新根证书。Jexus文件夹中自带了根证书更新程序“cert-sync”，它的参数是操作系统根证书的路径和文件名，不同的系统有不同的位置。比如：
+
 ```
 Ubuntu等Debian系操作系统：
 sudo /usr/jexus/cert-sync /etc/ssl/certs/ca-certificates.crt
-
 CentOS等RedHat系操作系统：
 sudo /usr/jexus/cert-sync /etc/pki/tls/certs/ca-bundle.crt
 ```
