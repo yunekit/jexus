@@ -319,7 +319,7 @@ denyfrom=111.222.111.\* &emsp;&emsp;\# 一个IP地址段
 <br/>
 denyfrom=101.201.1.132 &emsp;&emsp;\# 一个IP地址
 
-*注：为了不使配置复杂化，建议只使用"黑名单"。*
+*注：为了不使配置复杂化，建议只使用“黑名单”或只使用“白名单”。*
 
 **4、禁止访问某文件夹及其子文件夹中的内容（DenyDirs）:**
 
@@ -494,40 +494,40 @@ ssl.ciphers=ECDHE-RSA-AES256-GCM-SHA384:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!A
 
 **17、自宿主WEB应用程序托管服务（AppHost）：**
 
-"自宿主web应用程序托管"是Jexus的一项独有的重要功能，它为Asp.Net Core、Node.js、Tomcat等自宿主Web程序提供了简单可靠、可控的一体化集成管理。
+“自宿主web应用程序托管”是Jexus的一项独有的富有创造性的重要功能，它为Asp.Net Core的Kestrel、Java的Tomcat甚至Node.js、golang web等自带Http服务的“自宿主Web应用程序”提供了简单可靠、可控的一体化集成管理。
 
-格式：AppHost={Cmd=命令行; AppRoot=工作路径; AppPort=端口号}
+格式：AppHost=\{Cmd=命令及参数; AppRoot=程序文件夹路径; AppPort=应用程序端口号\}
 
 也可以分行书写（分行书写时，AppHost和"={"必须在同一行），例如：
 
 ```
 AppHost={
-  Cmd=命令行;
-  AppRoot=应该程序文件夹路径;
+  Cmd=命令及参数;
+  AppRoot=应用程序文件夹路径;
   AppPort=应用程序端口号;
 }
 ```
 子配置项说明：
 
-Cmd：必选项。表示启动这个web应用程序的命令和命令参数，如 Cmd=dotnet /var/www/mysite/webapp.dll。
+- Cmd：必选项。表示启动这个web应用程序的命令和命令参数，如 Cmd=dotnet /var/www/mysite/webapp.dll。
 
-AppRoot：非必选项。表示这个应用程序的工作目录，如：AppRoot=/var/www/mysite。如果本项没有指定，Jexus将使用网站root项中的根文件夹路径作为应用程序路径。
+- AppRoot：非必选项。表示这个应用程序所在的文件夹路径，如：AppRoot=/var/www/mysite。如果本项没有指定，Jexus将使用网站root项中的根文件夹路径作为应用程序路径。
 
-AppPort：必填项。表示这个应用程序使用的侦听端口，多个端口用英文逗号分隔。
+- AppPort：必填项。表示这个应用程序使用的侦听端口，多个端口用英文逗号分隔。特别强调，AppHost中的port不能与网站的port相同。
 
-Env：可选参数。表示这个应用程序工作时需要的环境变量，如Env=(PATH=/myhost/bin:\$PATH),多个设置用英文逗号分开。
+- Env：可选参数。表示这个应用程序工作时需要的环境变量，如Env=(PATH=/myhost/bin:\$PATH),多个设置用英文逗号分开。
 
-ErrLog：可选项。表示将这个应用程序的异常输出重定向到指定的文件（需填写完整路径）；
+- ErrLog：可选项。表示将这个应用程序的异常输出重定向到指定的文件（需填写完整路径）；
 
-OutLog：可选项。表示将这个应用程序的控制台输出重定向到指定的文件（需填写完整路径）；
+- OutLog：可选项。表示将这个应用程序的控制台输出重定向到指定的文件（需填写完整路径）；
 
-User：可选项。以指定的用户身份运行该应用程序，默认为root身份。
+- User：可选项。以指定的用户身份运行该应用程序，默认为root身份。
 
 注意：
 
 1、AppHost像AppHost.Port一样，不支持虚拟路径；
 
-2、AppHost功能是将指定的具有http服务能力的web应用程序纳入jexus工作进程进行管理，对Asp.Net Core或node.js等自宿主web应用程序用于生产环境时具有重要的意义。
+2、AppHost功能是将指定的具有http服务能力的web应用程序纳入jexus工作进程进行管理，对Asp.Net Core或tomcat、spring、node.js等自宿主web应用程序用于生产环境时具有重要的意义。
 
 3、不要同时启用AppHost和AppHost.Port。
 
