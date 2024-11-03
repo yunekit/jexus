@@ -325,7 +325,7 @@ denyfrom=101.201.1.132 &emsp;&emsp;\# 一个IP地址
 
 格式是：DenyDirs=PATH
 
-PATH指的是相对于网站根文件夹的URL路径，如 "/abcfiles"或"\~/abcfiles"。可以同时指定多个路径，用英文逗号分开。
+PATH指的是相对于网站根文件夹的URL路径，如 "/abcfiles"或"~/abcfiles"。可以同时指定多个路径，用英文逗号分开。
 
 **5、是否对请求的URL参数等进行安全检测（CheckQuery）**：
 
@@ -372,7 +372,6 @@ Reproxy=请求路径 目标服务器IP:端口 | 附加参数，如：
 Reproxy=/  http://1.1.1.1:800                   #全站反代
 Reproxy=/  http://1.1.1.1:800 | HostFixed       #带附加参数的反代
 Reproxy=/abc  http://1.1.1.1:900/abc            #部分路径反代
-
 Reproxy=/  http://1.1.1.1:5000, https://2.2.2.2:5000  #多目标反代
 ```
 
@@ -395,11 +394,11 @@ Reproxy=/  http://1.1.1.1:5000, https://2.2.2.2:5000  #多目标反代
 
 对于TCP连接的fast-cgi：
 
-fastcgi.add=php \| tcp:127.0.0.1:9000
+fastcgi.add=php | tcp:127.0.0.1:9000
 
 对于unix sockets连接的FastCGI：
 
-fastcgi.add=php,php3 \| socket:/tmp/phpsvr
+fastcgi.add=php,php3 | socket:/tmp/phpsvr
 
 **12、启用或关闭gzip压缩功能（UseGZIP）:**
 
@@ -501,7 +500,7 @@ ssl.ciphers=ECDHE-RSA-AES256-GCM-SHA384:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!A
 
 也可以分行书写（分行书写时，AppHost和"={"必须在同一行），例如：
 
-```code
+```
 AppHost={
   Cmd=命令行;
   AppRoot=应该程序文件夹路径;
@@ -627,7 +626,6 @@ Nginx是一款在中国国内使用得比较广泛的一款优秀的反向代理
 ```
 Ubuntu等Debian系操作系统：
 sudo /usr/jexus/cert-sync /etc/ssl/certs/ca-certificates.crt
-
 CentOS等RedHat系操作系统：
 sudo /usr/jexus/cert-sync /etc/pki/tls/certs/ca-bundle.crt
 ```
