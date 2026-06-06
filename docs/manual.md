@@ -24,8 +24,6 @@
 
 ## 一、Jexus 概述
 
-Jexus 是“Jexus Web Server”的简称，可缩写为“JWS”，中文读音近似于“杰克瑟斯”，也可称着“杰克斯”。
-
 Jexus是Linux平台上具有高安全性、高可靠性、高稳定性的高性能WEB服务器、反向代理网关服务器和自宿主WEB应用程序的托管（容器）服务器。
 
 Jexus除了具备通用WEB服务器所必备的静态文件处理和缓存功能外，还直接支持ASP.NET WEB应用程序，支持PHP，支持反向代理。自6.0版开始，Jexus开创性地设计了“AppHost”功能（HTTP应用程序容器），通过此功能，Jexus可以为Asp.Net Core、Tomcat、GoLang Web、Python Web等“自带HTTP功能的WEB应用程序”提供一体化集成管理。
@@ -157,11 +155,11 @@ sudo /usr/jexus/jws start 网站名
 
 （1）停止Jexus程序同时停止所有的网站：
 
-sudo /usr/jexus/stop
+sudo /usr/jexus/jws stop
 
 （2）停止一个指定的网站（web应用程序）
 
-sudo /usr/jexus/stop 网站名
+sudo /usr/jexus/jws stop 网站名
 
 3、重启命令
 

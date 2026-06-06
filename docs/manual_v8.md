@@ -25,8 +25,6 @@
 
 ## 一、Jexus 概述
 
-Jexus 是“Jexus Web Server”的简称，可缩写为“JWS”，中文读音近似于“杰克瑟斯”，也可称着“杰克斯”。
-
 Jexus是Linux平台上具有高安全性、高可靠性、高稳定性的高性能WEB服务器、反向代理网关服务器和自宿主WEB应用程序的托管（容器）服务器。
 
 Jexus除了具备通用WEB服务器所必备的静态文件处理和缓存功能外，还直接支持ASP.NET WEB应用程序，支持PHP，支持反向代理。自6.0版开始，Jexus开创性地设计了“AppHost”功能（HTTP应用程序容器），通过此功能，Jexus可以为Asp.Net Core、Tomcat、GoLang Web、Python Web等“自带HTTP功能的WEB应用程序”提供一体化集成管理。
@@ -161,11 +159,11 @@ sudo /usr/jexus/jws start 网站名
 
 （1）停止Jexus程序同时停止所有的网站：
 
-sudo /usr/jexus/stop
+sudo /usr/jexus/jws stop
 
 （2）停止一个指定的网站（web应用程序）
 
-sudo /usr/jexus/stop 网站名
+sudo /usr/jexus/jws stop 网站名
 
 3、重启命令
 
@@ -263,9 +261,9 @@ Jexus Web Server 可以同时运行多个站点，没有数量限制。
 
 port：站点服务端口，这是必填项。http的标准端口是80，https的标准端口是443，最大值是65535。
 
-root：根路径。指定网站虚拟根路径（URL根路径）和存放网站文件的物理文件夹路径（物理根），两种路径用一个以上英文空格符分开。URL根路径常常是“/”。如果你的网站文件存放在“/var/www/default”这个文件夹中，那么，root项就应该是“root=/ /var/www/default”。
+root：根路径。指定网站虚拟根路径（URL根路径）和存放网站文件的物理文件夹路径（物理根），两种路径用一个英文空格或冒号分开。URL根路径常常是“/”。如果你的网站文件存放在“/var/www/default”这个文件夹中，那么，root项就应该是“root=/ /var/www/default”或者“root=/:/var/www/default”。
 
-**root 项是必填项**。如果遇上在当前服务器并没有网站程序的"全站反向代理"这种情况，你可以在服务器单独创建一个空白文件夹并设定它，也可以设为"/tmp"。
+**root 项是必填项**，但“全站反向代理”或“端口转发”等网站配置并没有实际存在的物理路径，这种情况下你可以在服务器单独创建一个空白文件夹，当然也可以也以用"/tmp"作为网站物理路径。
 
 hosts：配置网站的域名。一个站可以指定多个域名，各域名间用英文逗号分隔。也可以配置“泛域名”代指某个域名下的所有子域名，比如“\*.mysite.com”。如果填“\*”号，就表示访问这个站可以是任意的域名或是服务器IP地址，即，区分这个网站不是用域名区分，而是用端口或虚拟根路径进行区分。
 
@@ -277,7 +275,7 @@ hosts：配置网站的域名。一个站可以指定多个域名，各域名间
 
 **1、默认首页（Indexes）：**
 
-Jexus已经内置默认首页的定义，包括index.html、index.htm、default.html、default.htm、index.aspx、default.aspx。如果你网站的首页没有被包括在这些默认首页中，可以通过启用该选项指定你的默认首页。
+Jexus已经内置默认首页的定义，包括index.html、index.htm、default.html、default.htm、index.aspx、default.aspx。该选项一般不需要配置，但是如果你网站的首页没有被包括在这些默认首页中，可以通过启用该选项指定你的默认首页。
 
 **2、URL重写（rewrite）：**
 
@@ -310,9 +308,9 @@ A、只允许某些IP地址访问网站（白名单功能）
 
 配置格式，形如：
 
-allowfrom=1.2.3.\* &emsp;&emsp;\# 一个IP地址段
+allowfrom=1.2.3.\* &emsp;&emsp;&emsp;\# 一个IP地址段
 <br>
-AllowFrom=2.2.3.3 &emsp;&emsp;\# 一个具体的IPv4地址
+AllowFrom=2.2.3.3 &emsp;&emsp; \# 一个具体的IPv4地址
 
 B、禁止某IP或某IP段访问网站（黑名单功能）
 
@@ -320,9 +318,9 @@ B、禁止某IP或某IP段访问网站（黑名单功能）
 
 配置格式，形如：
 
-denyfrom=111.222.111.\* &emsp;&emsp;\# 一个IP地址段
+denyfrom=111.222.111.\* &emsp;&emsp;&emsp;\# 一个IP地址段
 <br/>
-denyfrom=101.201.1.132 &emsp;&emsp;\# 一个IP地址
+denyfrom=101.201.1.132 &emsp;&emsp; \# 一个IP地址
 
 *注：为了不使配置复杂化，建议只使用“黑名单”或只使用“白名单”。*
 
@@ -374,10 +372,10 @@ Keep_Alive=true或false
 
 Reproxy=请求路径 目标服务器IP:端口 | 附加参数，如：
 ```
-Reproxy=/  http://1.1.1.1:800                   #全站反代
-Reproxy=/  http://1.1.1.1:800 | HostFixed       #带附加参数的反代
-Reproxy=/abc  http://1.1.1.1:900/abc            #部分路径反代
-Reproxy=/  http://1.1.1.1:5000, https://2.2.2.2:5000  #多目标反代
+Reproxy=/  http://1.1.1.1:800                         #全站反代
+Reproxy=/  http://1.1.1.1:800 | HostFixed             #带附加参数的反代
+Reproxy=/abc  http://1.1.1.1:900/abc                  #部分路径反代
+Reproxy=/  http://1.1.1.1:5000, https://2.2.2.2:5000  #多目标反代（负载均衡）
 ```
 
 值得强调的是，“多目标服务器的反向代理”将产生负载均衡（WEB集群）和高可用性效果，即，当用户访问该站时，Jexus就会随机选择一台后端服务器进行处理，如果Jexus发现某台服务器已经宕机而没有应答，Jexus就会把请求转发给其它剩余的服务器。
@@ -458,9 +456,15 @@ ssl.ciphers=ECDHE-RSA-AES256-GCM-SHA384:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!A
 
 默认情况下，Jexus为Asp.Net提供1个工作进程，单工作进程的好处是节约内存，但也有弱点，比如，难以充分发挥多CPU（多核）的性能优势，大并发承受力、容灾能力等方面比多工作进程弱等等。
 
-为Asp.Net开启"多进程"工作模式后，ASP.NET网站的web.config中的Session状态服务不能再使用"InProc"模式，而应该使用"StateServer"等其它非程序内存贮模式，否则极易出现Session数据丢失问题。
+为Asp.Net开启"多进程"工作模式后，ASP.NET网站的web.config的“<system.web>”节中的 Session 状态服务不能再使用默认的“InProc”模式，而应该使用“StateServer”或“SqlServer”等进程外存贮模式，否则极易出现Session数据丢失问题。
 
-另外，当Asp.Net使用多进程并行处理时，为了在验证数据的加密、解密方面保证一致性，还应该在web.config文件夹中的"system.web"节中配置"machineKey"项。例如作如下配置：
+当使用 StateServer 模式时，可参考如下配置：
+
+```
+<sessionState mode="StateServer" stateConnectionString="tcpip=127.0.0.1:42424" timeout="60"></sessionState>
+```
+
+同时，当Asp.Net使用多进程或多应用程序域（domain）并行处理时，为了保证数据加密验证（比如对POST数据验证）的一致性，同样还应该在“web.config”文件中的“<system.web>”节内配置“machineKey”项。例如进行如下配置（直接可用）：
 
 ```
 <machineKey 
@@ -469,19 +473,30 @@ ssl.ciphers=ECDHE-RSA-AES256-GCM-SHA384:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!A
 />
 ```
 
-设置ASP.NET多进程数量并非越多越好，要综合考虑服务器CPU核数、可用内存、并发压力等多方面因素。一般来说，进程数量配置为CPU核数的一半就行了，最多不要超过CPU的核心数。
+*注1：设置ASP.NET多进程数量并非越多越好，要综合考虑服务器CPU核数、可用内存、并发压力等多方面因素。一般来说，进程数量配置为CPU核数的一半就行了，最多不要超过CPU的核心数。*
 
-（2）限制ASP.NET消耗CPU的时间数（默认为0，无限制）：
+*注2：除使用StateServer、SqlServer模式外，也可以使用能支持跨进程的自定义模式，比如使用“SqliteSession”作为Session状态管理的提供者（https://www.nuget.org/packages/SqliteSession）。* 
+
+（2）配置每个工作进程开启 Asp.Net 应用程序域的数量（默认1，即每个ASP.NET工作进程只含一个 Application Domain）：
+
+格式是：AspNet.WorkerDomains=数量
+
+该选项的值除了填写数字，也可以是“auto”，表示由Jexus根据服务器cpu数量自动进行数量配置。
+
+*\* 需要强调的是：当AspNet.WorkerDomains的值大于 1 时，Asp.NET网站的 Session 配置与 Asp.Net 多工作进程时的配置要求一样，都不能再用“InProc”模式，而必须使用“StateServer”、“SqlServer”或“Custom”模式。*
+
+（3）限制ASP.NET消耗CPU的时间数（默认为0，无限制）：
 
 格式是：AspNet.MaxCpuTime=单位为秒的时间值
 
 配置该选项后，当该网站使用cpu的时间累积到你指定的最大值之后，Jexus将重启这个网站。
 
-（3）限制Asp.Net使用内存的最大值（默认为0，无限制）：
+（4）限制Asp.Net使用内存的最大值（默认为0，无限制）：
 
 格式是：AspNet.MaxMemory=以兆为单位的内存数
 
 设置该选项后，当你的网站程序使用的内存超过指定的最大值时，Jexus将重启该站，释放之前占用的内存空间。
+
 
 **16、WEB应用程序端口转发（AppHost.Port）：**
 
@@ -496,6 +511,8 @@ ssl.ciphers=ECDHE-RSA-AES256-GCM-SHA384:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!A
 端口转发与反向代理功能相近，但端口转发的性能更高。
 
 注意：一是端口转发不能用于虚拟根路径不是"/"的网站；二是端口转发只能在同一服务器上进行。
+
+*\* 强调：一是转发的端口号绝不能与当前配置的网站端口号相同，二是不要同时启用AppHost.Port和AppHost功能。*
 
 **17、自宿主WEB应用程序托管服务（AppHost）：**
 
@@ -537,13 +554,6 @@ AppHost={
 3、不要同时启用AppHost和AppHost.Port。
 
 
-**18、OWIN 配置**
-
-Jexus支持各种符合OWIN协议的 .NET WEB 应用。OWIN应用应该添加一个“适配器”（一个.NET class）提供给Jexus调用，该适配器中必须包括一个名叫 OwinMain 的公共方法，该方法是Jexus与OWIN WEB应用进行数据交换的核心通道。
-
-*有关OWIN应用及适配器代码编写方面的问题和技术，由于专业性较强，需要进一步了解的朋友可以与Jexus作者联系。或参考github上的Jexus开源项目中的 [OwinTest](https://github.com/yunekit/jexus/tree/main/Demos.src/OwinTest) 的源代码*
-
-具备“适配器”这个前提后，网站开启OWIN应用的办法是在网站配置文件中，添加 OwinMain 项，这个项的值就是具有OwinMain方法的类库（程序集）的名称，如：
 
 ```
 OwinMain = MyOwinApp.dll
