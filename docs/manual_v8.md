@@ -475,7 +475,7 @@ ssl.ciphers=ECDHE-RSA-AES256-GCM-SHA384:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!A
 
 *注1：设置ASP.NET多进程数量并非越多越好，要综合考虑服务器CPU核数、可用内存、并发压力等多方面因素。一般来说，进程数量配置为CPU核数的一半就行了，最多不要超过CPU的核心数。*
 
-*注2：除使用StateServer、SqlServer模式外，也可以使用能支持跨进程的自定义模式，比如使用“SqliteSession”作为Session状态管理的提供者（https://www.nuget.org/packages/SqliteSession）。* 
+*注2：除使用StateServer、SqlServer模式外，也可以使用能支持跨进程的自定义模式，比如使用“SqliteSession”作为Session状态管理的提供者（ https://www.nuget.org/packages/SqliteSession ）。* 
 
 （2）配置每个工作进程开启 Asp.Net 应用程序域的数量（默认1，即每个ASP.NET工作进程只含一个 Application Domain）：
 
