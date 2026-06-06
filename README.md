@@ -28,7 +28,7 @@ Jexus 作者的联系邮箱：j66x@163.com，QQ号：273766940.
 
 ----
 
-🔗&emsp;[Jexus 官方网站](https://www.jexus.org) &emsp;[用户手册 v7](docs/manual.md) &emsp;[用户手册 v8](docs/manual_v8.md) &emsp;[GitHub](https://github.com/yunekit/jexus) &emsp;[Gitee](https://gitee.com/yunekit/jexus)
+🔗&emsp;[Jexus 官方网站](https://www.jexus.org) &emsp;[用户手册 7.x版](docs/manual.md) &emsp;[用户手册 8.x版](docs/manual_v8.md) &emsp;[GitHub](https://github.com/yunekit/jexus) &emsp;[Gitee](https://gitee.com/yunekit/jexus)
 
 <!--
 ![jws_logo](https://raw.githubusercontent.com/yunekit/jexus/refs/heads/main/images/jexus_logo_h32.png)
